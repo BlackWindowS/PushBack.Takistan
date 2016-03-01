@@ -18,25 +18,28 @@ if ((random 100) < 20) then {
 		waituntil { if (BwS_nombreJoueurs != 0) then { _unit move (position ([_unit] call BwS_fn_nearestPlayableUnit)); sleep 1; (_unit distance ([_unit] call BwS_fn_nearestPlayableUnit)) < 10} else {false}; };
 		// EXPLOSIONNNNN
 		if (alive _unit) then {
-			"Bo_Mk82" createVehicle (position _unit); 
+			"Grenade" createVehicle (position _unit); 
 		};
 	} 
 	else {
 		// attaque à la kalash		
-		// lorsque les mecs sont proche de lui (- de 100m)
-		waituntil { if (BwS_nombreJoueurs != 0) then { _unit move (position ([_unit] call BwS_fn_nearestPlayableUnit)); sleep 1; (_unit distance ([_unit] call BwS_fn_nearestPlayableUnit)) < 100} else {false}; };
-		
-		// aller dans la maison la plus proche
-		_unit move (position nearestBuilding (position _unit));
-		waituntil {unitReady _unit};
 		// faire pop une kalash dans ses mains
-		_unit addMagazine "30Rnd_65x39_caseless_green";
-		_unit addWeapon "arifle_Katiba_F";
-		_unit addMagazine "30Rnd_65x39_caseless_green";
-		_unit addMagazine "30Rnd_65x39_caseless_green";
+		_unit addMagazine "rhs_30Rnd_545x39_AK";
+		_unit addWeapon "rhs_weap_ak74m";
+		_unit addMagazine "rhs_30Rnd_545x39_AK";
+		_unit addMagazine "rhs_30Rnd_545x39_AK";
 		// attaquer les pax
 		_unit doFire ([_unit] call BwS_fn_nearestPlayableUnit);
 		while {alive _unit} do { if (BwS_nombreJoueurs != 0) then { _unit move (position ([_unit] call BwS_fn_nearestPlayableUnit)); sleep 1;} else {false};};
 	};
 	
+}
+else
+{
+	_unit addEventHandler ["Killed", 
+	{
+		systemChat "Un civil à été tué. Les 2 factions ont une pénalité.";
+		[usine_us, -2000] call BwS_fn_ajouter_credits_usine;
+		[usine_ru, -2000] call BwS_fn_ajouter_credits_usine;
+	}]; 
 };

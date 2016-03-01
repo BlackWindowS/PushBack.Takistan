@@ -12,7 +12,7 @@ BwS_nombre_COP_russes = 0;
 publicVariable "BwS_joueurs_BwS";
 
 BwS_Debug = true;
-BwS_COS = false; // ce sont 2 systemes de peuplement : DCL et COS
+BwS_COS = true; // ce sont 2 systemes de peuplement : DCL et COS
 BwS_DCL = !BwS_COS;
 
 if (!isDedicated) then {BwS_nombreJoueurs = 1} else {BwS_nombreJoueurs = count playableUnits};

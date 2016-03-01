@@ -35,20 +35,3 @@ if (hasInterface) then
 		};
 	}, []] call BIS_fnc_addStackedEventHandler; 
 };
-	
-// ["EH_gestion_simulation_IA", "onEachFrame", 
-// {	
-	// {
-		// if (side _x == resistance) then
-		// {
-			// if ((_x distance player) < 2000) then
-			// {
-				// _x enableSimulation true;
-			// }
-			// else
-			// {
-				// _x enableSimulation false;
-			// };
-		// };
-	// } forEach ((position player) nearEntities ["Man", 3000]);
-// }, []] call BIS_fnc_addStackedEventHandler; 

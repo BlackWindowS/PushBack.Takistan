@@ -3,7 +3,7 @@ while {true} do
 	if (detecter) then
 	{
 		{
-			if (player distance _x <= 4) then
+			if (player distance _x <= 4 && ([getPos player, getDir player, 80, getPos _x] call BIS_fnc_inAngleSector)) then
 			{
 				[player distance _x, _x] call 
 				{

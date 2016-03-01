@@ -12,7 +12,7 @@
 
 private ["_actionDetecteur", "_actionTranchee"];
 
-startLoadingScreen ["Chargement en cours"];
+//startLoadingScreen ["Chargement en cours"];
 
 /*------------ Cleanup post mortem ------------*/
 removeAllActions player;
@@ -76,8 +76,8 @@ player addAction ["Activer le détecteur de mines", {detecter = true; [0, 0, (_t
 	hint "TP possible";
 };
 
-waituntil {preloadCamera position player};
-endLoadingScreen;
+// waituntil {preloadCamera position player};
+// endLoadingScreen;
 
 player disableTIEquipment true;
 
