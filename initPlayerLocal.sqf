@@ -2,17 +2,17 @@ fn_clr = {private ["_player"]; _player = _this select 0; _player unassignItem "N
 
 [player] call fn_clr;
 
-BwS_compilation_client = [] execVM "scripts\compilation_client.sqf";
+BwS_compilation_client = [] execVM "scripts\systemes\compilation_client.sqf";
 
 waitUntil {scriptDone BwS_compilation_client};
 nul = [] execVM "scripts\FOB.sqf";
-nul = [] execVM "gestions\COPs_client.sqf";
+nul = [] execVM "scripts\gestions\COPs_client.sqf";
 nul = [] execVM "Inits\initFOBs.sqf";
 
 BwS_MUTEX_action_en_cours = false;
 BwS_MUTEX_peut_rejoindre_champ_de_bataille = true;
 
-["MyID", "OnTangent", {
+["TFAR_EH_communique", "OnTangent", {
 	_unit = _this select 0;
 	_est_en_train_de_parler = _this select 4;
 	_unit setVariable ["BwS_var_est_en_train_de_transmettre", _est_en_train_de_parler, true];
@@ -20,7 +20,7 @@ BwS_MUTEX_peut_rejoindre_champ_de_bataille = true;
 
 player addEventHandler ["FiredNear", {[] spawn {BwS_thirdPerson_allowed = false; sleep 120; BwS_thirdPerson_allowed = true;}}];
 
-["EH_gestion_3rd_personne", "onEachFrame", 
+["BwS_EH_gestion_3rd_personne", "onEachFrame", 
 {	
 	if (!BwS_thirdPerson_allowed) then 
 	{

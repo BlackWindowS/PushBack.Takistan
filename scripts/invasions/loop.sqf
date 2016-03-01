@@ -1,13 +1,10 @@
-// homed, patrouilles, etc
-// _occupation = [] spawn BwS_fn_occupation;
-// waituntil {scriptDone _occupation};
-// diag_log "Occupation Terminée";
+
 // peuplement du serveur
 for "_i" from 0 to (20 + (random 7)) do {	[] spawn BwS_fn_motorizedPatrolTeam; };
 
-for "_i" from 0 to (20 + (random 10)) do {	[] spawn BwS_fn_patrolTeam;		};
+for "_i" from 0 to (20 + (random 0)) do {	[] spawn BwS_fn_patrolTeam;		};
 
-for "_i" from 0 to (5 + (random 3)) do {	[] spawn BwS_fn_mortier;	};
+for "_i" from 0 to (5 + (random 0)) do {	[] spawn BwS_fn_mortier;	};
 
 for "_i" from 0 to (4 + (random 2)) do {	[] spawn BwS_fn_aerialPatrol;	};
 
@@ -22,6 +19,12 @@ for "_i" from 0 to (3 + (random 2)) do
 	[(["petit", "moyen", "grand"] select floor(random 3)), _position] spawn BwS_fn_camp;
 };
 
+sleep 60;
+
+// homed, patrouilles, etc
+_occupation = [] spawn BwS_fn_occupation;
+waituntil {scriptDone _occupation};
+diag_log "Occupation Terminée";
 
 diag_log "Faut Unlock mtn...";
 "ia773" serverCommand "#unlock";
@@ -29,7 +32,7 @@ diag_log "/*************************** RE-OUVERTURE DU SERVEUR *****************
 
 BwS_fn_loop = {
 	waitUntil {(({side _x == resistance} count allUnits) < 50) && (count allPlayers == 0)};
-	execVM "invasions\loop.sqf";
+	execVM "scripts\invasions\loop.sqf";
 };
 
 [] spawn BwS_fn_loop;

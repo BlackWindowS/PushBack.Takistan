@@ -51,12 +51,7 @@ _locations = nearestLocations [_centerMap, ["NameCityCapital", "NameCity", "Name
 	
 	_trg = createTrigger ["EmptyDetector", _positionVille, false];
 	_trg setTriggerArea [500, 500, 0, false];
-	_trg setTriggerActivation ["WEST", "PRESENT", false];
-	_trg setTriggerStatements ["this", "[thisTrigger] spawn BwS_fn_spawnOccupation; hint 'occupation d une ville';", ""];
-		
-	_trg1 = createTrigger ["EmptyDetector", _positionVille, false];
-	_trg1 setTriggerArea [500, 500, 0, false];
-	_trg1 setTriggerActivation ["EAST", "PRESENT", false];
-	_trg1 setTriggerStatements ["this", "[thisTrigger] spawn BwS_fn_spawnOccupation; hint 'occupation d une ville';", ""];
+	_trg setTriggerActivation ["ANY", "PRESENT", false];
+	_trg setTriggerStatements ["this && (({side _x == resistance} count allUnits) < 300)", "[thisTrigger] spawn BwS_fn_spawnOccupation; hint 'occupation d une ville';", ""];
 	
 } forEach _villes;

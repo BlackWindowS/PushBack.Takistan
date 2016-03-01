@@ -8,6 +8,7 @@
 
 #define CONDITION_JUMELLES ("ACE_MX2A" in [(binocular player)])
 
+#define CONDITION_PILOTE ((vehicle player) isKindOf "Air" && !(joueurPilote) && (driver vehicle player == player) && !(typeOf vehicle player isEqualTo "Steerable_Parachute_F"))
 
 private ["_actionDetecteur", "_actionTranchee"];
 
@@ -121,6 +122,8 @@ while {alive player} do
 		player removeWeapon (binocular player);
 	};
 	
+	if (CONDITION_PILOTE) then {moveOut player; hintC "Vous devez être pilote !"; }; // on jarte du véhicule s'il n'est pas pilote
+	
 	if (("ACE_wirecutter" in (items player + assignedItems player)) && (_actionTranchee == 1339)) then  
 	{
 		_actionTranchee = player addAction ["Creuser une tranchée", 
@@ -161,9 +164,7 @@ while {alive player} do
 	if (!("ACE_wirecutter" in (items player + assignedItems player)) && !(_actionTranchee == 1339)) then {player removeAction _actionTranchee; _actionTranchee = 1339;};
 	
 	showChat true;
-	
-	if ((vehicle player) isKindOf "Air" && !(joueurPilote) && (driver vehicle player == player) && !(typeOf vehicle player isEqualTo "Steerable_Parachute_F")) then {moveOut player; hintC "Vous devez être pilote !"; }; // on jarte du véhicule s'il n'est pas pilote
-	
+		
 	// ouverture automatique de barrière
 	
 	if ((player distance (nearestObject [player, "Land_BarGate_F"])) < 8) then

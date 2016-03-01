@@ -1,5 +1,5 @@
 //[player] execVM "scripts\simpleEP.sqf";
-[player] execVM "scripts\surveillerJoueur.sqf";
+[player] execVM "scripts\systemes\surveillerJoueur.sqf";
 
 //[player, 0] execVM "scripts\effetIED.sqf";
 
