@@ -38,14 +38,6 @@ sleep 1;
 // waituntil {scriptdone _peuplement};
 
 // nul = [] execVM "scripts\gestions\gestion_secteurs.sqf";
-nul = [] execVM "scripts\invasions\loop.sqf"; 
-
-sleep 120;
-
-// homed, patrouilles, etc
-_occupation = [] spawn BwS_fn_occupation;
-waituntil {scriptDone _occupation};
-diag_log "Occupation Terminée";
 
 [] spawn { while {true} do {execVM "scripts\purgeur.sqf"; sleep 5000}; };
 

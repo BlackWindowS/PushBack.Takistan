@@ -13,3 +13,29 @@ if (isServer) then
 
 	execVM "Inits\initCaisses.sqf";
 };
+
+// ----------------------- 2 HC ----------------------
+BwS_HC_0_present = if (isNil "headless_client_0") then {false} else {true};
+BwS_HC_1_present = if (isNil "headless_client_1") then {false} else {true};
+
+if (BwS_HC_0_present && isMultiplayer) then 
+{
+	if (!isServer && !hasInterface) then 
+	{
+		// on est chez le HC 0
+		nul = [] execVM "scripts\invasions\loop.sqf"; 
+	};
+};
+
+if (BwS_HC_1_present && isMultiplayer) then 
+{
+	if (!isServer && !hasInterface) then 
+	{
+		// on est chez le HC 1
+		// homed, patrouilles, etc
+		_occupation = [] spawn BwS_fn_occupation;
+		waituntil {scriptDone _occupation};
+		diag_log "Occupation Terminée";
+	};
+};
+	
