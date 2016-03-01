@@ -19,13 +19,6 @@ for "_i" from 0 to (3 + (random 2)) do
 	[(["petit", "moyen", "grand"] select floor(random 3)), _position] spawn BwS_fn_camp;
 };
 
-sleep 60;
-
-// homed, patrouilles, etc
-_occupation = [] spawn BwS_fn_occupation;
-waituntil {scriptDone _occupation};
-diag_log "Occupation Terminée";
-
 diag_log "Faut Unlock mtn...";
 "ia773" serverCommand "#unlock";
 diag_log "/*************************** RE-OUVERTURE DU SERVEUR ***************************\";
