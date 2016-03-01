@@ -39,37 +39,3 @@ BwS_fn_RADAR_effacer_marqueurs = {
 		};
 	} forEach allMapMarkers;
 };
-
-/*
-BwS_fn_spawn_COP = {
-	private ["_position", "_nombreCOP"];
-	
-	_position = _this select 0;
-	
-	// récupération du nombre de COP 
-	_nombreCOP = switch (side player) do 
-	{
-		case west : {publicVariable "BwS_nombre_COP_americaines"; BwS_nombre_COP_americaines}; 
-		case east : {publicVariable "BwS_nombre_COP_russes"; BwS_nombre_COP_russes}; 
-		default {0};
-	};
-	
-	if (_nombreCOP == 2) then {
-		hint "Nombre maximal de COP atteint."} 
-	else {
-		private ["_FOB"];
-		// creation de l'objet
-		_FOB = "" createVehicle _position;
-		// creation du marqueur
-			// BIS_fnc_MP à destination de la faction
-		// stockage de variables dans l'objet
-			// faction qui la possède
-			
-		// add EH destruction 
-			// si détruite, delete le mrkr, décrémente nombre COP faction
-			
-		// addAction en BIS_fnc_MP avec target FOBeur_XXX (russe/americain)
-	};
-
-};
-*/

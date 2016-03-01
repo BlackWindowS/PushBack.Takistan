@@ -113,7 +113,7 @@
 				_civiltype = _x select 0;
 				_civil = _group createUnit [_civiltype, (_x select 1), [], 0, "FORM"];
 				_position = _positions call BIS_fnc_selectRandom;
-				//_civil execVM "invasions\vilain.sqf"; // PUSHBACK
+				//_civil execVM "scripts\invasions\vilain.sqf"; // PUSHBACK
 				_civil setvariable ["civilrole", (_x select 2), true];
 				_civil setvariable ["destination", _position, false];
 				_civil setvariable ["wcprotected", true, false];
