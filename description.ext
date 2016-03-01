@@ -1,0 +1,47 @@
+Author = "Team B.w.S";
+OnLoadName = "Reconquérir";
+OnLoadMission = "Opération Push Back sur Altis";
+loadScreen =  "images\load.jpg";
+
+Respawn = "BASE";
+RespawnDelay = 10;
+respawnVehicleDelay = 10;
+
+disabledAI = 1;
+enableDebugConsole = 1;
+
+corpseManagerMode = 1;
+wreckManagerMode = 1;
+
+corpseLimit = 3; 
+corpseRemovalMinTime = 300;
+corpseRemovalMaxTime = 600;
+
+wreckLimit = 3;
+wreckRemovalMinTime = 300;
+wreckRemovalMaxTime = 600;
+
+class Header {
+	gameType = Coop;
+	minPlayers = 1;
+	maxPlayers = 45; 
+	playerCountMultipleOf = 1;
+};
+
+class CfgFunctions {
+    #include "EPD\EPDcfgFunctions.hpp"
+};
+
+#include "R3F_LOG\desc_include.h"
+
+class CfgUnitInsignia
+{
+	class OperationPushBack
+	{
+		displayName = "Operation Push Back"; // Name displayed in Arsenal
+		author = "B.w.S"; // Author displayed in Arsenal
+		texture = "images\OPPushBack.pac"; // Image path
+		textureVehicle = ""; // Does nothing currently, reserved for future use
+	};
+};
+

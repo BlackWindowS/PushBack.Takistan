@@ -1,0 +1,3 @@
+gestionPatrouille.sqf => réveil 4km, convergence 2.5-0.5km
+gestionPatrouilleSoft.sqf => réveil quand joueurs
+gestionPatrouilleSoftMoyen.sqf => réveil 4km

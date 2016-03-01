@@ -1,0 +1,35 @@
+//#define HEURE 3600
+//#define MINUTE 60
+
+private ["_mortier", "_tempsEntreFrappes", "_ammo"];
+
+_mortier = (_this select 0);
+
+_ammo = switch (typeOf _mortier) do
+{
+	case "O_Mortar_01_F": {"8Rnd_82mm_Mo_shells"};
+	case "B_MBT_01_mlrs_F": {"12Rnd_230mm_rockets"};
+	case "O_MBT_02_arty_F": {"32Rnd_155mm_Mo_shells"};
+	case "rhs_2b14_82mm_ins": {"rhs_mag_3vo18_10"};
+	default { "" };
+};
+
+//_tempsEntreFrappes = 1*HEURE+30*MINUTE; // toutes les 1h30
+
+while {alive _mortier} do 
+{
+	BwS_nombreJoueurs = count allPlayers;
+	if (BwS_nombreJoueurs > 0) then
+	{
+		{
+			if ((position _x) inRangeOfArtillery [[gunner _mortier], _ammo]) then
+			{
+				_pos = [(position _x select 0)+round(random(300))-150, (position _x select 1)+round(random(300))-150, 0];
+				(gunner _mortier) doArtilleryFire [_pos, _ammo, 1];
+			};
+		} forEach allPlayers;
+	};
+		
+	sleep 10;	
+	//sleep _tempsEntreFrappes;	
+};
