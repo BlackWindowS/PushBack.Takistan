@@ -4,6 +4,8 @@ _TFR = execVM "Inits\initTFR.sqf";
 
 waituntil {scriptdone _R3F_AI && scriptdone _R3F_LOG && scriptdone _TFR};
 
+nul = execVM "scripts\systemes\compilation_fonctions_communes.sqf";
+
 //[] spawn {call compile preprocessFileLineNumbers "EPD\Ied_Init.sqf";};
 
 if (isServer) then

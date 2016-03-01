@@ -23,6 +23,7 @@ waituntil {scriptdone _compil};
 
 nul = [] execVM "scripts\gestions\COPs_serveur.sqf";
 nul = [] execVM "Inits\initCOPs.sqf";
+nul = [] execVM "scripts\missions\loop.sqf";
 // nul = [] execVM "scripts\eclairage.sqf";
 // nul = [] execVM "scripts\protectionBase.sqf";
 // nul = [] execVM "scripts\surveillerServeur.sqf";
@@ -56,5 +57,9 @@ nul = [arsenal1_1, "respawn_vehicle_east"] execVM "R3F_LOG\USER_FUNCT\do_not_los
 nul = [remise1_1, "respawn_vehicle_east"] execVM "R3F_LOG\USER_FUNCT\do_not_lose_it.sqf";
 nul = [arsenal2_1, "respawn_vehicle_east"] execVM "R3F_LOG\USER_FUNCT\do_not_lose_it.sqf";
 nul = [remise2_1, "respawn_vehicle_east"] execVM "R3F_LOG\USER_FUNCT\do_not_lose_it.sqf";
+
+_peuplement = scriptNull;
+if (BwS_COS) then {_peuplement = [] execVM "cos\cosInit.sqf";} else {_peuplement = [] execVM "DCL\init.sqf";};
+waituntil {scriptdone _peuplement};
 
 diag_log "/*********************** FIN initServer.sqf ***********************\";
