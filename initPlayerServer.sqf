@@ -22,3 +22,10 @@ if !(_UID in BwS_joueurs_BwS) then
 		if (side _player == east) then {BwS_joueurs_russes pushBack _UID};
 	};
 };
+
+if (!hasInterface) then 
+{
+	nul = [] execVM "scripts\systemes\compilation_serveur.sqf";
+	_centerMap = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
+	ROADS = (_centerMap nearRoads 20000) - ((getMarkerPos "PC") nearRoads 1000) - ((getMarkerPos "PC_1") nearRoads 2000);
+};

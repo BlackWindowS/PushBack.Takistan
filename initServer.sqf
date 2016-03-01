@@ -33,10 +33,6 @@ ROADS = (_centerMap nearRoads 20000) - ((getMarkerPos "PC") nearRoads 1000) - ((
 
 sleep 1;
 
-// _peuplement = scriptNull;
-// if (BwS_COS) then {_peuplement = [] execVM "cos\cosInit.sqf";} else {_peuplement = [] execVM "DCL\init.sqf";};
-// waituntil {scriptdone _peuplement};
-
 // nul = [] execVM "scripts\gestions\gestion_secteurs.sqf";
 
 [] spawn { while {true} do {execVM "scripts\purgeur.sqf"; sleep 5000}; };
