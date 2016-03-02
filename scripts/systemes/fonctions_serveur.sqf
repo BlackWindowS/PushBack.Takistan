@@ -174,7 +174,21 @@ BwS_fn_diag_log = {
 	};
 };
 
-
+BwS_fn_spawn_camp = 
+{
+	// [[<items>, ...], <position>, <position de ref>] call BwS_fn_spawn_camp;
+	
+	_items = (_this select 0);
+	_position = _this select 1,
+	_positionBase = _this select 2;
+	
+	{ 
+		_temp = createVehicle [(_x select 0), ([_position, [_positionBase, _x select 1] call BwS_fn_substractArray] call BwS_fn_addArray), [], 0, "CAN_COLLIDE"];
+		_temp setDir (_x select 2);
+		_temp setVectorUp surfaceNormal position _temp;
+		_temp setPosATL [position _temp select 0, position _temp select 1, 0];
+	} forEach _objects;
+};
 
 
 

@@ -22,6 +22,7 @@ BwS_fn_motorizedPatrolTeam = compile preprocessFile "scripts\invasions\motorized
 BwS_fn_gestionPatrolSoftMoyen = compile preprocessFile "scripts\invasions\gestionPatrouilleSoftMoyen.sqf";
 
 BwS_fn_mission_convoi = compile preprocessFile "scripts\missions\convoi.sqf";
+BwS_fn_mission_camp = compile preprocessFile "scripts\missions\camp.sqf";
 
 // spawn fnct only NO CALL ^
 
