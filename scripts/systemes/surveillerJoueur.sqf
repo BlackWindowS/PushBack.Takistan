@@ -17,6 +17,14 @@ waitUntil {scriptDone BwS_compilation_client};
 /*---------- Initialisation des variables ------------*/
 playerInHQ = false;
 
+joueurDroniste = false;
+joueurEOD = false;
+joueurPilote = false;
+
+if ((player getVariable "pilote") isEqualTo true) then {joueurPilote = true;};
+if ((player getVariable "AGM_isEOD") isEqualTo true) then {joueurEOD = true;};
+if ((player getVariable "droniste") isEqualTo true) then {joueurDroniste = true;};
+
 _UIDs = ["_SP_PLAYER_", "76561198118269478", "76561198067811595"];
 
 if (getplayeruid player in _UIDs) then {player addAction ["<t color='#69c0ef' size='1.5'>Teleportafion</t>",{ onMapSingleClick {vehicle player setpos _pos; onMapSingleClick ""}}, [], 1, false, true, ""]};

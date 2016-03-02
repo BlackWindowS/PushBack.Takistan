@@ -1,6 +1,4 @@
 diag_log "/*********************** SERVEUR DEMARRE ***********************\";
-"ia773" serverCommand "#lock";
-diag_log "/*************************** FERMETURE DU SERVEUR ***************************\";
 
 BwS_joueurs_russes = []; 
 BwS_joueurs_americains = [];

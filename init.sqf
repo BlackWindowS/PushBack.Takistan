@@ -25,6 +25,8 @@ if (BwS_HC_0_present && isMultiplayer) then
 	if (!isServer && !hasInterface) then 
 	{
 		// on est chez le HC 0
+		"ia773" serverCommand "#lock";
+		diag_log "/*************************** FERMETURE DU SERVEUR ***************************\";
 		nul = [] execVM "scripts\invasions\loop.sqf"; 
 	};
 };
