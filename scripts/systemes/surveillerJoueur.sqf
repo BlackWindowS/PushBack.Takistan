@@ -10,13 +10,14 @@
 
 #define CONDITION_PILOTE ((vehicle player) isKindOf "Air" && !(joueurPilote) && (driver vehicle player == player) && !(typeOf vehicle player isEqualTo "Steerable_Parachute_F"))
 
-private ["_actionDetecteur", "_actionTranchee"];
+private ["_actionDetecteur"];
 
 //startLoadingScreen ["Chargement en cours"];
 
 /*------------ Cleanup post mortem ------------*/
 removeAllActions player;
-terminate BwS_handle_detecteurMines;
+
+if !(isNil "BwS_handle_detecteurMines") then {terminate BwS_handle_detecteurMines};
 
 waitUntil {!isNull player};
 
@@ -40,7 +41,6 @@ onMapSingleClick "_shift";
 // };
 
 _actionDetecteur = 1338;
-_actionTranchee = 1339;
 
 if ((player getVariable "pilote") isEqualTo true) then {joueurPilote = true;};
 if ((player getVariable "AGM_isEOD") isEqualTo true) then {joueurEOD = true;};
@@ -124,21 +124,6 @@ while {alive player} do
 	
 	if (CONDITION_PILOTE) then {moveOut player; hintC "Vous devez être pilote !"; }; // on jarte du véhicule s'il n'est pas pilote
 	
-	if (("ACE_wirecutter" in (items player + assignedItems player)) && (_actionTranchee == 1339)) then  
-	{
-		_actionTranchee = player addAction ["Creuser une tranchée", 
-							{
-								player removeAction (_this select 2);
-								player switchMove "AinvPknlMstpSnonWnonDnon_medic0"; 
-								_temps = time + 7; waitUntil {time >= _temps}; 
-								_dirPlayer = direction player;
-								_tranchee = "CraterLong" createVehicle [(position player select 0), (position player select 1), (position player select 2)]; 
-								_tranchee setDir _dirPlayer+90;
-								_tranchee addAction ["Refermer la tranchée", {deleteVehicle (_this select 0); (_this select 0) removeAction (_this select 2);}];
-							}
-							];
-	};
-	
 	if (("MineDetector" in items player) && joueurEOD && (_actionDetecteur == 1338)) then 
 	{
 		_actionDetecteur = player addAction ["Activer le détecteur de mines", 
@@ -161,7 +146,6 @@ while {alive player} do
 	};
 	
 	if (!("MineDetector" in (items player + assignedItems player)) && !(_actionDetecteur == 1338)) then {player removeAction _actionDetecteur; _actionDetecteur = 1338;};
-	if (!("ACE_wirecutter" in (items player + assignedItems player)) && !(_actionTranchee == 1339)) then {player removeAction _actionTranchee; _actionTranchee = 1339;};
 	
 	showChat true;
 		
