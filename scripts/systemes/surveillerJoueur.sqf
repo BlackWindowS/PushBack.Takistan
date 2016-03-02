@@ -1,6 +1,6 @@
 #define JOUEUR_EST_DANS_PC ((player distance (nearestObject [player, "Land_Cargo_Tower_V1_F"])) < 10) && ((getPosATL player select 2) > 12) && (playerInHQ isEqualTo false) && ((((getMarkerPos "PC") distance (position player)) < 20) || (((getMarkerPos "PC_1") distance (position player)) < 20))
 
-#define CONDITION_DRONISTE (("B_UavTerminal" in (items player + assignedItems player)) || ("O_UavTerminal" in (items player + assignedItems player))) && !joueurDroniste
+#define CONDITION_DRONISTE ((("B_UavTerminal" in (items player + assignedItems player)) || ("O_UavTerminal" in (items player + assignedItems player))) && !joueurDroniste)
 
 #define CONDITION_INTERDICTION_UAV (backpack player == "B_UAV_01_backpack_F") || (backpack player == "O_UAV_01_backpack_F") || (backpack player == "I_UAV_01_backpack_F") || (backpack player == "B_rhsusf_B_BACKPACK")
 
@@ -10,23 +10,12 @@
 
 #define CONDITION_PILOTE ((vehicle player) isKindOf "Air" && !(joueurPilote) && (driver vehicle player == player) && !(typeOf vehicle player isEqualTo "Steerable_Parachute_F"))
 
-private ["_actionDetecteur"];
-
 //startLoadingScreen ["Chargement en cours"];
 
-/*------------ Cleanup post mortem ------------*/
-removeAllActions player;
-
-if !(isNil "BwS_handle_detecteurMines") then {terminate BwS_handle_detecteurMines};
-
-waitUntil {!isNull player};
+waitUntil {scriptDone BwS_compilation_client};
 
 /*---------- Initialisation des variables ------------*/
 playerInHQ = false;
-
-joueurPilote = false;
-joueurEOD = false;
-joueurDroniste = false;
 
 _UIDs = ["_SP_PLAYER_", "76561198118269478", "76561198067811595"];
 
@@ -39,17 +28,6 @@ onMapSingleClick "_shift";
 // else {
 	// player setVariable ["R3F_LOG_CF_disabled", true];
 // };
-
-_actionDetecteur = 1338;
-
-if ((player getVariable "pilote") isEqualTo true) then {joueurPilote = true;};
-if ((player getVariable "AGM_isEOD") isEqualTo true) then {joueurEOD = true;};
-if ((player getVariable "droniste") isEqualTo true) then {joueurDroniste = true;};
-
-detecter = false;
-if (joueurEOD) then {BwS_handle_detecteurMines = [] execVM "scripts\detecteurMines.sqf";};
-
-player addAction ["Activer le détecteur de mines", {detecter = true; [0, 0, (_this select 2)] execVM "scripts\detecteurMines.sqf";}, [], 1.5, false, true, "", str ("MineDetector" in (items player) && joueurEOD)];
 
 [] spawn {
 	while {alive player} do {
@@ -123,30 +101,7 @@ while {alive player} do
 	};
 	
 	if (CONDITION_PILOTE) then {moveOut player; hintC "Vous devez être pilote !"; }; // on jarte du véhicule s'il n'est pas pilote
-	
-	if (("MineDetector" in items player) && joueurEOD && (_actionDetecteur == 1338)) then 
-	{
-		_actionDetecteur = player addAction ["Activer le détecteur de mines", 
-		{
-			_target = _this select 0;
-			_action = _this select 2;
-			
-			if (detecter) then 
-			{
-				_target setUserActionText [_action, "Activer le détecteur de mines"]; 
-				detecter = false;
-			}
-			
-			else
-			{
-				_target setUserActionText [_action, "Désactiver le détecteur de mines"]; 
-				detecter = true;
-			};
-		}];
-	};
-	
-	if (!("MineDetector" in (items player + assignedItems player)) && !(_actionDetecteur == 1338)) then {player removeAction _actionDetecteur; _actionDetecteur = 1338;};
-	
+		
 	showChat true;
 		
 	// ouverture automatique de barrière

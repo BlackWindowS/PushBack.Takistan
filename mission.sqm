@@ -8,18 +8,18 @@ class EditorData
 	toggles=9;
 	class ItemIDProvider
 	{
-		nextID=581;
+		nextID=592;
 	};
 	class MarkerIDProvider
 	{
-		nextID=7;
+		nextID=16;
 	};
 	class Camera
 	{
-		pos[]={23545.994,3.8658395,17756.289};
-		dir[]={-0.4085294,-0.48905268,0.77067715};
-		up[]={-0.22905307,0.87225252,0.43210047};
-		aside[]={0.88354546,-1.2564851e-007,0.46836057};
+		pos[]={23579.627,25.173054,17748.656};
+		dir[]={-0.73508024,-0.65077692,0.1901931};
+		up[]={-0.63004017,0.75925976,0.16301569};
+		aside[]={0.25049222,-3.4458935e-008,0.96812725};
 	};
 };
 binarizationWanted=0;
@@ -114,7 +114,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=365;
+		items=373;
 		class Item0
 		{
 			dataType="Marker";
@@ -2759,8 +2759,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={28313.203,14.727269,25772.432};
-						angles[]={6.2645216,6.0868878,6.2711854};
+						position[]={28313.203,14.727448,25772.432};
+						angles[]={6.2645278,6.0868878,6.2711778};
 					};
 					side="West";
 					flags=2;
@@ -2774,6 +2774,48 @@ class Mission
 					};
 					id=163;
 					type="rhsusf_army_ocp_engineer";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=2;
+					};
 				};
 				class Item1
 				{
@@ -2781,7 +2823,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={28312.078,14.717196,25770.617};
-						angles[]={6.2645216,6.0868878,6.247201};
+						angles[]={6.2645278,6.0868878,6.2471962};
 					};
 					side="West";
 					class Attributes
@@ -2794,6 +2836,48 @@ class Mission
 					};
 					id=164;
 					type="rhsusf_army_ocp_engineer";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=2;
+					};
 				};
 				class Item2
 				{
@@ -2801,7 +2885,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={28313.557,14.678538,25768.916};
-						angles[]={6.2805333,6.0868878,6.2738566};
+						angles[]={6.2805324,6.0868878,6.2738476};
 					};
 					side="West";
 					class Attributes
@@ -2925,8 +3009,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={28314.883,14.752006,25774.826};
-						angles[]={6.2645216,6.0868878,6.2711854};
+						position[]={28314.881,14.752028,25774.826};
+						angles[]={6.2645278,6.0868878,6.2711778};
 					};
 					side="West";
 					class Attributes
@@ -2939,6 +3023,48 @@ class Mission
 					};
 					id=167;
 					type="rhsusf_army_ocp_engineer";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=2;
+					};
 				};
 				class Item5
 				{
@@ -2946,7 +3072,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={28318.525,14.629655,25770.613};
-						angles[]={6.2645216,6.0868878,6.2711854};
+						angles[]={6.2645278,6.0868878,6.2711778};
 					};
 					side="West";
 					class Attributes
@@ -2959,6 +3085,48 @@ class Mission
 					};
 					id=168;
 					type="rhsusf_army_ocp_engineer";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=2;
+					};
 				};
 			};
 			class Attributes
@@ -15146,8 +15314,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
 							class Value
 							{
 								class data
@@ -15156,38 +15324,14 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="";
+									value=0;
 								};
 							};
 						};
-						nAttributes=1;
-					};
-				};
-				class Item1
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={9677.124,13.362664,12331.332};
-						angles[]={0.065240532,2.6276281,0.039977662};
-					};
-					side="East";
-					class Attributes
-					{
-						skill=0.60000002;
-						init="this setVariable [""AGM_IsEOD"", true];";
-						name="eod12";
-						description="EOD";
-						isPlayable=1;
-					};
-					id=491;
-					type="rhs_vdv_des_engineer";
-					class CustomAttributes
-					{
-						class Attribute0
+						class Attribute1
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -15206,7 +15350,107 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute2
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=3;
+					};
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={9677.124,13.362636,12331.332};
+						angles[]={0.065240405,2.6276281,0.039985489};
+					};
+					side="East";
+					class Attributes
+					{
+						skill=0.60000002;
+						init="this setVariable [""AGM_IsEOD"", true];";
+						name="eod12";
+						description="EOD";
+						isPlayable=1;
+					};
+					id=491;
+					type="rhs_vdv_des_engineer";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 				class Item2
@@ -15232,6 +15476,25 @@ class Mission
 					{
 						class Attribute0
 						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
 							property="speaker";
 							expression="_this setspeaker _value;";
 							class Value
@@ -15249,7 +15512,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute2
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 				class Item3
@@ -15275,6 +15557,25 @@ class Mission
 					{
 						class Attribute0
 						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
 							property="speaker";
 							expression="_this setspeaker _value;";
 							class Value
@@ -15292,7 +15593,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute2
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 				class Item4
@@ -15319,6 +15639,25 @@ class Mission
 					{
 						class Attribute0
 						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
 							property="speaker";
 							expression="_this setspeaker _value;";
 							class Value
@@ -15336,7 +15675,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute2
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 				class Item5
@@ -15362,6 +15720,25 @@ class Mission
 					{
 						class Attribute0
 						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
 							property="speaker";
 							expression="_this setspeaker _value;";
 							class Value
@@ -15379,7 +15756,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute2
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 			};
@@ -18979,7 +19375,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=1;
+							value=0.69999999;
 						};
 					};
 				};
@@ -19252,7 +19648,7 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={23544.904,3.1900001,17762.541};
+				position[]={23544.904,3.1900001,17762.539};
 			};
 			id=575;
 			type="ACE_moduleAdvancedMedicalSettings";
@@ -19513,7 +19909,7 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={23545.957,3.1900001,17762.541};
+				position[]={23545.957,3.1900001,17762.539};
 			};
 			id=576;
 			type="ACE_moduleMedicalMenuSettings";
@@ -19862,6 +20258,70 @@ class Mission
 				};
 				nAttributes=5;
 			};
+		};
+		class Item365
+		{
+			dataType="Marker";
+			position[]={4093.6682,21.341553,13760.632};
+			name="convoi_debut_1";
+			type="Empty";
+			id=584;
+		};
+		class Item366
+		{
+			dataType="Marker";
+			position[]={9227.7598,121.29102,15833.329};
+			name="convoi_fin_1";
+			type="Empty";
+			id=585;
+		};
+		class Item367
+		{
+			dataType="Marker";
+			position[]={13830.178,21.302826,19033.033};
+			name="convoi_debut_2";
+			type="Empty";
+			id=586;
+		};
+		class Item368
+		{
+			dataType="Marker";
+			position[]={9338.6553,16.718098,21575.713};
+			name="convoi_fin_2";
+			type="Empty";
+			id=587;
+		};
+		class Item369
+		{
+			dataType="Marker";
+			position[]={20636.916,37.316509,6953.9668};
+			name="convoi_debut_3";
+			type="Empty";
+			id=588;
+		};
+		class Item370
+		{
+			dataType="Marker";
+			position[]={17064.52,14.761724,12669.088};
+			name="convoi_fin_3";
+			type="Empty";
+			id=589;
+		};
+		class Item371
+		{
+			dataType="Marker";
+			position[]={22172.604,52.085369,21017.168};
+			name="convoi_debut_4";
+			type="Empty";
+			id=590;
+		};
+		class Item372
+		{
+			dataType="Marker";
+			position[]={18948.121,28.006311,16642.525};
+			name="convoi_fin_4";
+			type="Empty";
+			id=591;
 		};
 	};
 	class Connections

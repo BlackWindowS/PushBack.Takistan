@@ -18,7 +18,8 @@ if ((random 100) < 20) then {
 		waituntil { if (BwS_nombreJoueurs != 0) then { _unit move (position ([_unit] call BwS_fn_nearestPlayableUnit)); sleep 1; (_unit distance ([_unit] call BwS_fn_nearestPlayableUnit)) < 10} else {false}; };
 		// EXPLOSIONNNNN
 		if (alive _unit) then {
-			"Grenade" createVehicle (position _unit); 
+			_explo = "Grenade" createVehicle (position _unit); 
+			_explo attachTo [_unit];
 		};
 	} 
 	else {
@@ -38,8 +39,11 @@ else
 {
 	_unit addEventHandler ["Killed", 
 	{
-		systemChat "Un civil à été tué. Les 2 factions ont une pénalité.";
-		[usine_us, -2000] call BwS_fn_ajouter_credits_usine;
-		[usine_ru, -2000] call BwS_fn_ajouter_credits_usine;
+		if (count ((_this select 0) getVariable ["ace_medical_openwounds", []]) != 0) then
+		{
+			systemChat "Un civil à été tué. Les 2 factions ont une pénalité.";
+			[usine_us, -2000] call BwS_fn_ajouter_credits_usine;
+			[usine_ru, -2000] call BwS_fn_ajouter_credits_usine;
+		};
 	}]; 
 };

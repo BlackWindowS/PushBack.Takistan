@@ -34,4 +34,14 @@ if (hasInterface) then
 			};
 		};
 	}, []] call BIS_fnc_addStackedEventHandler; 
+	
+	joueurDroniste = false;
+	joueurEOD = false;
+	joueurPilote = false;
+	
+	if ((player getVariable "pilote") isEqualTo true) then {joueurPilote = true;};
+	if ((player getVariable "AGM_isEOD") isEqualTo true) then {joueurEOD = true;};
+	if ((player getVariable "droniste") isEqualTo true) then {joueurDroniste = true;};
+	
+	nul = [] execVM "scripts\systemes\addActions.sqf";
 };
