@@ -30,7 +30,7 @@
 	// Désolé mais c'est pas portable sur une autre map sinon.. :/
 	DCLaltistownpositions = [];
 	_centerMap = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
-	_locations = nearestLocations [_centerMap, ["NameCityCapital", "NameCity", "NameVillage", "CityCenter"], 12000];
+	_locations = nearestLocations [_centerMap, ["NameCityCapital", "NameCity", "NameVillage", "CityCenter"], 20000];
 	{DCLaltistownpositions pushBack [(locationPosition _x) select 0, (locationPosition _x) select 1]} forEach _locations;
 	
 	// civilian pop when players are at x meters
@@ -38,7 +38,7 @@
 
 	// Civilians are in a group when they pop
 	// Number max random of civilians in the group are x numbers
-	DCLgroupsize = 5;
+	DCLgroupsize = 10;
 
 	// civilian can move in houses around x meters
 	// of theirs initial position

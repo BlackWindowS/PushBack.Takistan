@@ -1,6 +1,6 @@
 private ["_missionEnCours", "_missions", "_nombreDeJoueurs"];
 
-_missions = [BwS_fn_mission_convoi, BwS_fn_mission_camp] call BIS_fnc_arrayShuffle;
+_missions = [BwS_fn_mission_convoi, BwS_fn_mission_camp/*, BwS_fn_mission_occupation, BwS_fn_mission_occupation*/] call BIS_fnc_arrayShuffle;
 
 _i = 0;
 

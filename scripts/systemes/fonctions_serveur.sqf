@@ -190,7 +190,46 @@ BwS_fn_spawn_camp =
 	} forEach _objects;
 };
 
+//[<location>] spawn BwS_fn_occuper_une_location;
+BwS_fn_occuper_une_location =
+{
+	private ["_maisons", "_nombreMaisons", "_location", "_group", "_groupHomed"];
+	
+	_location = _this select 0;
 
+	// maisons rayon - 500m
+	_maisons = (locationPosition _location) nearObjects ["House", 350];
+	_maisons = _maisons call BIS_fnc_arrayShuffle;
+	_nombreMaisons = count _maisons;
+	
+	// une patrouille pour 50 maisons
+	private ["_group"];
+	for "_i" from 0 to (_nombreMaisons/50) do 
+	{
+		_group = [(locationPosition _location), 3 + round(random(5)), resistance, resistance] call BwS_fn_spawnGroup;
+		[_group, (position leader _group), 200] call BIS_fnc_taskPatrol;
+	};	
+	
+	// on prend 5% des maisons
+	_maisons resize floor(0.1*_nombreMaisons);
+	_nombreMaisons = (count _maisons);
+
+	// spawner des homed en proportion
+	if (_nombreMaisons > 0) then 
+	{
+		{
+			_pos = (_x buildingPos floor(random(count([_x] call BIS_fnc_buildingPositions))));
+			if ((_pos select 0) != 0 && (_pos select 1) != 0) then {
+				_groupHomed = createGroup resistance;
+				"rhs_g_Soldier_F" createUnit [_pos, _groupHomed]; 
+				_groupHomed setBehaviour "STEALTH";
+				[(units _groupHomed) select 0] call BwS_fn_gestion_radio;
+			};
+		} forEach _maisons;
+	};
+	
+	waitUntil {(({alive _x}count (units _group)) == 0) && (({alive _x}count (units _groupHomed)) == 0)};
+};
 
 
 

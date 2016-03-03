@@ -24,5 +24,5 @@ _GHint = (_hintg select 0);
 _ghint1= (_hintg select 1);
 _ghint2= (_hintg select 2);
 _ghint3= (_hintg select 3);
-player groupChat (format ["Town:%4 .Civilians:%1 .Vehicles:%2 .Parked:%3",_GHint,_ghint1,_ghint2, _ghint3]);
+player groupChat (format ["Town: %4. Civilians: %1. Vehicles: %2. Parked: %3",_GHint,_ghint1,_ghint2, _ghint3]);
 };

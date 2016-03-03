@@ -23,7 +23,7 @@ else {
 		else{
 
 			COS_distance=500;//Set spawn distance
-			_aerielActivation=true;// Set if flying units can activate civilian Zones
+			_aerielActivation=false;// Set if flying units can activate civilian Zones
 
 			blackListTowns = [""];// Remove towns from COS
 
@@ -35,11 +35,11 @@ else {
 
 			showTownLabel = false;// Show town information when entering COS zones
 
-			debugCOS = BwS_Debug;// Show spawned units on the map
+			debugCOS = false;// Show spawned units on the map
 
 			COSpedestrians=true; //Spawn pedestrians
-			COScars=true;// Spawn Cars
-			COSparked=true;// Spawn parked cars
+			COScars=false;// Spawn Cars
+			COSparked=false;// Spawn parked cars
 
 			// Types of units that will be spawned as civilians.
 			COScivPool =["C_man_p_beggar_F_afro","C_man_p_beggar_F_afro","C_man_p_fugitive_F_afro","C_man_p_shorts_1_F_afro","C_man_polo_1_F_afro","C_man_polo_2_F_afro","C_man_polo_3_F_afro","C_man_polo_4_F_afro","C_man_polo_5_F_afro","C_man_polo_6_F_afro","C_man_shorts_1_F_afro","C_man_shorts_2_F_afro","C_man_shorts_3_F_afro","C_man_shorts_4_F_afro"];	
@@ -182,7 +182,7 @@ else {
 					_trigger setTriggerStatements [_actCond,_trigAct,_trigDe];
 				};
 
-			} foreach ((nearestLocations [getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition"), ["NameCityCapital", "NameCity", "NameVillage", "CityCenter"], 12000]) + whiteListMkrs);
+			} foreach ((nearestLocations [getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition"), ["NameCityCapital", "NameCity", "NameVillage", "CityCenter"], 20000]) + whiteListMkrs);
 
 			// All towns have been saved into cos Marker Array.
 			SERVER setvariable ["COSmarkers",cosMkrArray,true];

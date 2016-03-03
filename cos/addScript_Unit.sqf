@@ -5,7 +5,7 @@ _unit = unit. Refer to Unit as _unit.
 
 _unit = (_this select 0);
 
-if ((random 100) < 20) then {
+if ((random 100) < 15) then {
 	_unit allowFleeing 0;
 	_unit setSkill 1;
 	
@@ -14,7 +14,7 @@ if ((random 100) < 20) then {
 	BwS_nombreJoueurs = count allPlayers;
 	if ((random 100) < 10) then {
 		// suicide bomber ! on lui ajoute une ceinture
-		_unit addVest "V_BandollierB_khk";
+		// _unit addVest "V_BandollierB_khk";
 		waituntil { if (BwS_nombreJoueurs != 0) then { _unit move (position ([_unit] call BwS_fn_nearestPlayableUnit)); sleep 1; (_unit distance ([_unit] call BwS_fn_nearestPlayableUnit)) < 10} else {false}; };
 		// EXPLOSIONNNNN
 		if (alive _unit) then {
@@ -39,11 +39,8 @@ else
 {
 	_unit addEventHandler ["Killed", 
 	{
-		if (count ((_this select 0) getVariable ["ace_medical_openwounds", []]) != 0) then
-		{
-			systemChat "Un civil à été tué. Les 2 factions ont une pénalité.";
-			[usine_us, -2000] call BwS_fn_ajouter_credits_usine;
-			[usine_ru, -2000] call BwS_fn_ajouter_credits_usine;
-		};
+		systemChat "Un civil à été tué. Les 2 factions ont une pénalité.";
+		[usine_us, -2000] call BwS_fn_ajouter_credits_usine;
+		[usine_ru, -2000] call BwS_fn_ajouter_credits_usine;
 	}]; 
 };
