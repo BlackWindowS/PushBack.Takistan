@@ -28,9 +28,9 @@ _position set [1, (_position select 1)-300+random(600)];
 
 // contenu de ta mission
 ["grand", _position] spawn BwS_fn_camp;
-
+[_position] call BwS_fn_ajouter_caisse_reward;
 _futur = time + 3600;
-waitUntil {time <= _futur};
+waitUntil {time >= _futur};
 
 BwS_missionEnCours_camp = 0;
 publicVariable "BwS_missionEnCours_camp"; // cette ligne permet aux clients de connaitre l'état de la variable car le script est executé seulement sur le serveur. publicVariable doit être appelé après chaque changement de la variable visée. BIS_fnc_MP fait executer son contenu à tous les clients

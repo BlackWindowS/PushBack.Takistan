@@ -11,7 +11,7 @@ while {true} do
 	
 	if (_nombreDeJoueurs > 0) then 
 	{
-		// sleep 300; // attente 5 min pour voir combien de joueurs sont arrivés
+		sleep 300; // attente 5 min pour voir combien de joueurs sont arrivés
 		
 		if (_nombreDeJoueurs > 0) then 
 		{
