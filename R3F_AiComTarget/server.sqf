@@ -2,7 +2,7 @@
 server.sqf
 Functions server side
 
-Author : ~R3F~ Mapoule
+Author : ~R3F~ Mapoule et [B.w.S] SoP
 team-r3f.org
 ***************************************/
 
@@ -44,8 +44,8 @@ BwS_fn_GetInNearest = {
 	
 	_unit = _this select 0;
 
-	_unit commandWatch objNull; // arrête d'être fixé sur moiiiii !
-	_unit doWatch objNull; // non mais oh...
+	_unit commandWatch objNull; 
+	_unit doWatch objNull;
 	
 	_nearests = (position _unit) nearEntities [["StaticWeapon", "Tank", "Car", "Air"], 20]; // on récupère les statics les plus proches (- de 20m)
 
@@ -54,15 +54,6 @@ BwS_fn_GetInNearest = {
 		{
 			private ["_nearest", "_occupe"];
 			_nearest = _x; // on prend le premier venu (pas forcément le plus proche, à améliorer)	
-			// private ["_distance_de_l_objet_actuel", "_distance_du_plus_proche"];
-			// _nearest = objNull;
-			// _distance_de_l_objet_actuel = 0;
-			// _distance_du_plus_proche = 1000000000000000;
-			
-			// {
-				// _distance_de_l_objet_actuel = _unit distance _x;
-				// if (_distance_de_l_objet_actuel < _distance_du_plus_proche) then {_nearest = _x; _distance_du_plus_proche = _distance_de_l_objet_actuel;};
-			// } forEach _nearests;
 			
 			_occupe = (_nearest getVariable ["BwS_var_occupe", false]);
 			_assigne = ((leader group _unit) getVariable ["BwS_var_assigne", false]);
@@ -78,44 +69,74 @@ BwS_fn_GetInNearest = {
 				
 			};
 		} forEach _nearests;
-		// [_unit] orderGetIn true;
-		
-		// if (_nearest isKindOf "StaticWeapon") then // si c'est un poste fixe
-		// {
-			// if ((gunner _nearest) isEqualTo objNull) then // si y'a personne dedans en tireur
-			// { 
-				// _unit assignAsGunner _nearest; // monte dedans bonhomme !
-			// };
-		// };
-		// if ((_nearest isKindOf "Tank") OR (_nearest isKindOf "Car")) then // condition en cascade pour remplir par ordre : tireur, conducteur, chef de bord, passager
-		// {
-			// if (gunner _nearest isEqualTo objNull) then 
-			// {
-				// _unit assignAsGunner _nearest;
-			// } 
-			// else 
-			// {
-				// if (driver _nearest isEqualTo objNull) then 
-				// {
-					// _unit assignAsDriver _nearest;
-				// } 
-				// else 
-				// {
-					// if (commander _nearest isEqualTo objNull) then 
-					// {
-						// _unit assignAsCommander _nearest;
-					// }
-					// else 
-					// {
-						// _unit assignAsCargo _nearest;
-					// };
-				// };
-			// };
-		// };
 	};	
 };
 
+BwS_fn_mouvements = 
+{
+	sleep 0.01;
+	private ["_unit", "_prochain_mouvement", "_nearest_building"];
+
+	_unit = (_this select 0);
+
+	_prochain_mouvement = 0;
+
+	while {(behaviour _unit == "COMBAT") && (alive _unit) && !BwS_AIC_execution_fnct_serveur_en_cours} do
+	{
+		_nearest_building = (nearestObjects [_unit, ["House", "Building"], 50]) call BIS_fnc_arrayShuffle;  // maisons les plus proches dans un rayon de 50m (mélangées)
+		_nearest_player = [_unit] call BwS_fn_nearestPlayer;
+		
+		_nearest_building = [_nearest_building, _unit, 60, _nearest_player] call BwS_fn_buildings_inAngleSector;
+		
+		if (count _nearest_building > 0) then// si on en compte au moins 1
+		{
+			_nearest_building = _nearest_building select 0;// on prend la première du tableau
+			
+			if ((_unit distance _nearest_building) < 20) then // si on est à - de 20m de cette batisse
+			{
+				_unit commandMove (selectRandom ([_nearest_building] call BIS_fnc_buildingPositions));// on commande d'aller dedans
+				_unit setSpeedMode "FULL";
+				_prochain_mouvement = time + 40;
+			}
+			else
+			{
+				_unit commandMove position (nearestBuilding _unit); // sinon on commande de s'en rapprocher
+				_unit setSpeedMode "FULL";
+				_prochain_mouvement = time + 10;
+			};
+		}
+		else // sinon push sur le joueur le plus proche
+		{	
+			_unit commandMove position ([_unit] call BwS_fn_nearestPlayer);
+			_prochain_mouvement = time + 20;
+		};
+		
+		waitUntil {time >= _prochain_mouvement};
+		sleep 0.1;
+	};
+};
+
+BwS_fn_handle_fire =
+{
+	private ["_unit", "_target"];
+	_unit = _this select 0;
+	
+	_target = selectRandom ((_unit nearEntities R3F_AIC_CFG_distance_max_suppress_fire) select {side _x == west});
+	
+	_unit doWatch _target;
+
+	waitUntil {_unit aimedAtTarget [_target] > 0};
+	
+	while {!BwS_AIC_execution_fnct_serveur_en_cours} do
+	{
+		_unit fireAtTarget [_target]; 
+		sleep 0.5+ (random 0.5);
+	};
+};
+
 R3F_AIC_FNCT_sever = {
+	BwS_AIC_execution_fnct_serveur_en_cours = true;
+	
 	private ["_player_array_eni","_player","_array_eni_detected","_distance","_min_max_reveal"];
 
 	_player_array_eni = _this select 1;
@@ -161,6 +182,10 @@ R3F_AIC_FNCT_sever = {
 
 		[ _x, _player ] call R3F_AIC_FNCT_ai_suppress_fire; 
 		[ _x, _player ] spawn R3F_AIC_FNCT_ai_flares; 
-		[ _x ] spawn BwS_fn_GetInNearest;
+		// [ _x ] spawn BwS_fn_GetInNearest;
+		// [ _x ] spawn BwS_fn_mouvements;
+		// [ _x ] spawn BwS_fn_handle_fire;
 	} forEach _array_eni_detected;
+		
+	BwS_AIC_execution_fnct_serveur_en_cours = false;
 };

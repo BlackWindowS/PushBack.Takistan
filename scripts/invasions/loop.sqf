@@ -1,22 +1,28 @@
 
+private ["_config"];
+_config = [] execVM "scripts\invasions\config.sqf";
+waitUntil {scriptDone _config}; 
+
 // peuplement du serveur
-for "_i" from 0 to (20 + (random 7)) do {	[] spawn BwS_fn_motorizedPatrolTeam; };
+if (BwS_var_casernes) then {for "_i" from 0 to 5+random(3) do {	[] spawn BwS_fn_caserne; };};
 
-for "_i" from 0 to (20 + (random 0)) do {	[] spawn BwS_fn_patrolTeam;		};
+for "_i" from 0 to (10 + (random 5)) do {	[] spawn BwS_fn_motorizedPatrolTeam; };
 
-for "_i" from 0 to (5 + (random 0)) do {	[] spawn BwS_fn_mortier;	};
+for "_i" from 0 to (15 + (random 10)) do {	[] spawn BwS_fn_patrolTeam;		};
 
-for "_i" from 0 to (4 + (random 2)) do {	[] spawn BwS_fn_aerialPatrol;	};
+for "_i" from 0 to (3 + (random 0)) do {	[] spawn BwS_fn_mortier;	};
+
+// for "_i" from 0 to (4 + (random 2)) do {	[] spawn BwS_fn_aerialPatrol;	};
 
 _positionCamps = [];
 for "_i" from 0 to (3 + (random 2)) do 
 {	
-	_position = position (ROADS select (floor(random(count ROADS))));
+	_position = position (selectRandom ROADS);
 	_position set [0, (_position select 0)-300+random(600)];
 	_position set [1, (_position select 1)-300+random(600)];
 	
 	// _positionCamps pushBack _position;
-	[(["petit", "moyen", "grand"] select floor(random 3)), _position] spawn BwS_fn_camp;
+	[(selectRandom ["petit", "moyen", "grand"]), _position] spawn BwS_fn_camp;
 };
 
 diag_log "Faut Unlock mtn...";
@@ -24,7 +30,7 @@ diag_log "Faut Unlock mtn...";
 diag_log "/*************************** RE-OUVERTURE DU SERVEUR ***************************\";
 
 BwS_fn_loop = {
-	waitUntil {(({side _x == resistance} count allUnits) < 50) && (count allPlayers == 0)};
+	waitUntil {sleep 1800; (({side _x == resistance} count allUnits) < 50) && (count allPlayers == 0)};
 	execVM "scripts\invasions\loop.sqf";
 };
 

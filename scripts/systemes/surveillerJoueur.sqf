@@ -10,7 +10,7 @@
 
 #define CONDITION_PILOTE ((vehicle player) isKindOf "Air" && !(joueurPilote) && (driver vehicle player == player) && !(typeOf vehicle player isEqualTo "Steerable_Parachute_F"))
 
-//startLoadingScreen ["Chargement en cours"];
+startLoadingScreen ["Chargement en cours"];
 
 waitUntil {scriptDone BwS_compilation_client};
 
@@ -30,19 +30,10 @@ _UIDs = ["_SP_PLAYER_", "76561198118269478", "76561198067811595"];
 if (getplayeruid player in _UIDs) then {player addAction ["<t color='#69c0ef' size='1.5'>Teleportafion</t>",{ onMapSingleClick {vehicle player setpos _pos; onMapSingleClick ""}}, [], 1, false, true, ""]};
 onMapSingleClick "_shift";
 
-// if ((getPlayerUID player) in BwS_joueurs_BwS) then {
-	// player setVariable ["R3F_LOG_CF_disabled", false];
-// }
-// else {
-	// player setVariable ["R3F_LOG_CF_disabled", true];
-// };
-
 [] spawn {
 	while {alive player} do {
 		if ((vehicle player == FOBa) ||
-			(vehicle player == FOBb) ||
-			(vehicle player == FOBA_R) ||
-			(vehicle player == FOBB_R)) then 
+			(vehicle player == FOBb)) then 
 		{	
 			if !(player getVariable ["tf_unable_to_use_radio", false]) then 
 			{
@@ -62,8 +53,8 @@ onMapSingleClick "_shift";
 	hint "TP possible";
 };
 
-// waituntil {preloadCamera position player};
-// endLoadingScreen;
+waituntil {preloadCamera position player};
+endLoadingScreen;
 
 player disableTIEquipment true;
 
@@ -94,13 +85,14 @@ while {alive player} do
 	if (CONDITION_INTERDICTION_UAV) then
 	{
 		removeBackpack player;
-		hintC "Les UAV sont interdits.";
+		hintC "Les UAV sont interdits via l'arsenal.";
 	};
 	
 	if (CONDITION_TWS) then
 	{
 		player removePrimaryWeaponItem "Weapon_optic_tws";
 		player removePrimaryWeaponItem "Weapon_optic_tws_mg";
+		hintC "TWS interdites.";
 	};
 	
 	if (CONDITION_JUMELLES) then

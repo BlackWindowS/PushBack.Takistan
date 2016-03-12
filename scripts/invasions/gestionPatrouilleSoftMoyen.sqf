@@ -1,8 +1,10 @@
 _group = (_this select 0);
 
+_prochain_check = 0;
+
 while {count units _group != 0} do
 {
-	_nearestPlayer = [leader _group] call BwS_fn_nearestPlayableUnit;
+	_nearestPlayer = [leader _group] call BwS_fn_nearestPlayer;
 	
 	if ((((leader _group) distance _nearestPlayer) < 2000) && !(simulationEnabled (leader _group))) then
 	{
@@ -23,9 +25,11 @@ while {count units _group != 0} do
 		[format ["Nous venons de désimuler le groupe %1 car le joueur le plus proche etait %2", _group, _nearestPlayer]] call BwS_fn_diag_log;
 	};
 	
+	waitUntil {time >= _prochain_check};
 	sleep 1;
 };
 
-// {	
-	// _x enableSimulation false;	
-// } forEach units _group;
+{	
+	_x enableSimulation false;	
+	deleteVehicle _x;
+} forEach units _group;

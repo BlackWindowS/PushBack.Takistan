@@ -51,7 +51,8 @@ _locations = nearestLocations [_centerMap, ["NameCityCapital", "NameCity", "Name
 	
 	_trg = createTrigger ["EmptyDetector", _positionVille, false];
 	_trg setTriggerArea [500, 500, 0, false];
-	_trg setTriggerActivation ["ANY", "PRESENT", false];
-	_trg setTriggerStatements ["this && (({side _x == resistance} count allUnits) < 300) && ({_x in allPlayers} count thisList > 0)", "[thisTrigger] spawn BwS_fn_spawnOccupation; hint 'occupation d une ville';", ""];
-	sleep 10;
+	_trg setTriggerActivation ["WEST", "PRESENT", false];
+	_trg setTriggerStatements ["(({side _x == resistance} count allUnits) < 300) && {vehicle _x in thisList && isplayer _x && ((getPosATL _x) select 2) < 25} count allunits > 0", "[thisTrigger] spawn BwS_fn_spawnOccupation; hint 'occupation d une ville';", ""];
+	systemChat "trigger place sur une ville";
+	sleep 1;
 } forEach _villes;

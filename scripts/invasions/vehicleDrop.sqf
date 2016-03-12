@@ -9,7 +9,7 @@ _group = createGroup _eastHQ;
 _ifrit = createVehicle ["rhs_uaz_dshkm_chdkz", [0, 0, 0], [], 1000, "NONE"];
 _veh setSlingLoad _ifrit;
 
-_pos = position (ROADS select (floor(random(count ROADS))));
+_pos = position (selectRandom ROADS);
 _pos set [2, 0];
 _destination = _pos;
 
@@ -36,7 +36,7 @@ _gestion = [_group] spawn BwS_fn_gestionPatrolSoftMoyen;
 {	[_x] spawn BwS_fn_gestion_radio;	} forEach crew _ifrit;
 
 while {alive driver _ifrit} do {
-	driver _ifrit move position (ROADS select (floor(random(count ROADS))));
+	driver _ifrit move position (selectRandom ROADS);
 	waituntil {unitReady driver _ifrit};
 	_ifrit setFuel 1;
 	sleep 1;

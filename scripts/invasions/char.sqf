@@ -7,7 +7,7 @@ _randomPos = [random(10000), 500, 0];
 
 _types = ["rhs_btr70_chdkz", "rhs_btr60_chdkz"];
 // _char = createVehicle [(_types select 0), _randomPos, [], 0, "NONE"];
-_char = createVehicle [(_types select (floor(random(count(_types))))), _randomPos, [], 0, "NONE"];
+_char = createVehicle [(selectRandom _types), _randomPos, [], 0, "NONE"];
 createVehicleCrew _char;
 
 _group = [_randomPos, 8, resistance, resistance] call BwS_fn_spawnGroup;
@@ -21,20 +21,20 @@ if (BwS_Debug) then { ["char", position leader _group, "ColorRed"] spawn BwS_fn_
 // déplacement jusque point random
 _gestion = [_group] spawn BwS_fn_gestionPatrolSoft; 
 
-_pos = position (ROADS select (floor(random(count ROADS))));
+_pos = position (selectRandom ROADS);
 _pos set [2, 0];
 driver _char move _pos;
-waituntil {unitReady driver _char};
+waituntil {sleep 0.1; unitReady driver _char};
 sleep 3600;
 terminate _gestion;
 
 _gestion = [_group] spawn BwS_fn_gestionPatrolSoftMoyen;
 
 while {alive driver _char} do {
-	_pos = position (ROADS select (floor(random(count ROADS))));
+	_pos = position (selectRandom ROADS);
 	_pos set [2, 0];
 	driver _char move _pos;
-	waituntil {unitReady driver _char};
+	waituntil {sleep 0.1; unitReady driver _char};
 	_char setFuel 1;
 	sleep 1;
 };

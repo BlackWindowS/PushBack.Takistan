@@ -21,7 +21,7 @@ for "_i" from 0 to 7 do
 _veh flyInHeight (200 + random 100);
 
 // parachutage lorsque WP accompli
-_cible = ROADS select (floor(random(count(ROADS))));
+_cible = selectRandom ROADS;
 
 _pos = position _cible;
 _pos set [2, 0];

@@ -3,7 +3,7 @@
 
 private ["_group", "_position"];
 
-_position = position (ROADS select (floor(random(count ROADS))));
+_position = position (selectRandom ROADS);
 
 _group = [_position, (3 + floor(random 6)), resistance, resistance] call BwS_fn_spawnGroup;
 

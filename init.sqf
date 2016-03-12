@@ -1,3 +1,6 @@
+#define ON true
+#define OFF false
+
 _R3F_AI = execVM "R3F_AiComTarget\init.sqf";
 _R3F_LOG = execVM "R3F_LOG\init.sqf";
 _TFR = execVM "Inits\initTFR.sqf";
@@ -17,29 +20,34 @@ if (isServer) then
 };
 
 // ----------------------- 2 HC ----------------------
-BwS_HC_0_present = if (isNil "headless_client_0") then {false} else {true};
-BwS_HC_1_present = if (isNil "headless_client_1") then {false} else {true};
 
-if (BwS_HC_0_present && isMultiplayer) then 
+BwS_headlessclient_on_off = OFF;
+
+if (BwS_headlessclient_on_off) then
 {
-	if (!isServer && !hasInterface) then 
+	BwS_HC_0_present = if (isNil "headless_client_0") then {false} else {true};
+	BwS_HC_1_present = if (isNil "headless_client_1") then {false} else {true};
+
+	if (BwS_HC_0_present && isMultiplayer) then 
 	{
-		// on est chez le HC 0
-		"ia773" serverCommand "#lock";
-		diag_log "/*************************** FERMETURE DU SERVEUR ***************************\";
-		nul = [] execVM "scripts\invasions\loop.sqf"; 
+		if (!isServer && !hasInterface) then 
+		{
+			// on est chez le HC 0
+			"ia773" serverCommand "#lock";
+			diag_log "/*************************** FERMETURE DU SERVEUR ***************************\";
+			nul = [] execVM "scripts\invasions\loop.sqf"; 
+		};
+	};
+
+	if (BwS_HC_1_present && isMultiplayer) then 
+	{
+		if (!isServer && !hasInterface) then 
+		{
+			// on est chez le HC 1
+			// homed, patrouilles, etc
+			_occupation = [] spawn BwS_fn_occupation;
+			waituntil {scriptDone _occupation};
+			diag_log "Occupation Terminée";
+		};
 	};
 };
-
-if (BwS_HC_1_present && isMultiplayer) then 
-{
-	if (!isServer && !hasInterface) then 
-	{
-		// on est chez le HC 1
-		// homed, patrouilles, etc
-		_occupation = [] spawn BwS_fn_occupation;
-		waituntil {scriptDone _occupation};
-		diag_log "Occupation Terminée";
-	};
-};
-	

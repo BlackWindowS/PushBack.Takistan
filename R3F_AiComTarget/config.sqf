@@ -11,19 +11,19 @@ team-r3f.org
 //
 //----------------------------------------------------------------------------------------------------
 // Probability of suppress fire
-R3F_AIC_CFG_suppress_fire_probability = 90;// %
+R3F_AIC_CFG_suppress_fire_probability = 100;// %
 
 // Minimal distance for suppress fire
-R3F_AIC_CFG_distance_min_suppress_fire = 300;// m
+R3F_AIC_CFG_distance_min_suppress_fire = 0;// m
 
 // Maximal distance for suppress fire
-R3F_AIC_CFG_distance_max_suppress_fire = 500;// m
+R3F_AIC_CFG_distance_max_suppress_fire = 300;// m
 
 // Minimal time of suppress fire
-R3F_AIC_CFG_time_min_suppress_fire = 4;// sec
+R3F_AIC_CFG_time_min_suppress_fire = 5;// sec
 
 // Maximal time of suppress fire
-R3F_AIC_CFG_time_max_suppress_fire = 10;// sec
+R3F_AIC_CFG_time_max_suppress_fire = 15;// sec
 //-----------------------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------------------------
@@ -37,16 +37,16 @@ R3F_AIC_CFG_time_max_suppress_fire = 10;// sec
 // Example : R3F_AIC_CFG_spotting_day_min_max = [ 2.3, 3.5 ];
 //-----------------------------------------------------------------------------------------------------
 // Value day 600 m
-R3F_AIC_CFG_spotting_day_min_max = [ 2.5, 3.7 ]; 
+R3F_AIC_CFG_spotting_day_min_max = [ 2.5, 4 ]; 
 
 // Value night 600 m
-R3F_AIC_CFG_spotting_night_min_max = [ 1.5, 2.2 ]; 
+R3F_AIC_CFG_spotting_night_min_max = [ 2, 3 ]; 
 
 // Value dawn and dusk
-R3F_AIC_CFG_spotting_transition_d_n_min_max = [ 2, 2.6 ];
+R3F_AIC_CFG_spotting_transition_d_n_min_max = [ 2, 3 ];
 
 // Value min at 600 m
-R3F_AIC_CFG_knowsAbout_set_mini = 1.5;
+R3F_AIC_CFG_knowsAbout_set_mini = 2;
 
 //-----------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------

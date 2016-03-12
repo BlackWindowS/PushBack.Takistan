@@ -24,7 +24,7 @@ _position set [1, (_position select 1)-300+random(600)];
 		player removeSimpleTask _task; 
 		
 	  }], 
-"BIS_fnc_spawn", west, true, false] call BIS_fnc_MP;
+"BIS_fnc_spawn", true, true, false] call BIS_fnc_MP;
 
 // contenu de ta mission
 ["grand", _position] spawn BwS_fn_camp;

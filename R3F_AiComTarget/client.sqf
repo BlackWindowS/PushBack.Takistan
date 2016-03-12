@@ -56,7 +56,7 @@ R3F_AIC_FNCT_is_Silent_Muzzle = {
 
 
 R3F_AIC_FNCT_client = {
-	if ( time > R3F_AIC_save_time  + 30 ) then 
+	if ( time > (R3F_AIC_save_time + 30)) then 
 	{
 		private ["_player_unit","_weapon","_muzzle","_magazine","_array_near_entities",
 		"_enemy_side_array","_index","_has_silencer","_is_silent_muzzle","_array_eni_near"];

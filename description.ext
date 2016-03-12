@@ -1,11 +1,11 @@
 Author = "Team B.w.S";
-OnLoadName = "Reconquérir";
-OnLoadMission = "Opération Push Back sur Altis";
+OnLoadName = "Sécuriser";
+OnLoadMission = "Opération Push Back au Takistan";
 loadScreen =  "images\load.jpg";
 
 Respawn = "BASE";
 RespawnDelay = 10;
-respawnVehicleDelay = 10;
+respawnVehicleDelay = 60;
 
 disabledAI = 1;
 enableDebugConsole = 1;

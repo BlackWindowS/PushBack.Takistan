@@ -4,9 +4,6 @@ BwS_joueurs_russes = [];
 BwS_joueurs_americains = [];
 BwS_joueurs_BwS = ["76561198059264494", "76561198067811595", "76561198090076779", "76561198091898451", "76561198118269478", "76561198181657685", "76561198232946924"];
 
-BwS_nombre_COP_americaines = 0;
-BwS_nombre_COP_russes = 0;
-
 publicVariable "BwS_joueurs_BwS";
 
 BwS_Debug = true;
@@ -32,14 +29,10 @@ ROADS = (_centerMap nearRoads 20000) - ((getMarkerPos "PC") nearRoads 1000) - ((
 
 sleep 1;
 
-// nul = [] execVM "scripts\gestions\gestion_secteurs.sqf";
-
 [] spawn { while {true} do {execVM "scripts\purgeur.sqf"; sleep 5000}; };
 
 [conteneur, arsenal1, remise1] execVM "inits\initConteneur.Sqf";
 [conteneur2, arsenal2, remise2] execVM "inits\initConteneur.Sqf";
-[conteneur1_1, arsenal1_1, remise1_1] execVM "inits\initConteneur.Sqf";
-[conteneur2_1, arsenal2_1, remise2_1] execVM "inits\initConteneur.Sqf";
 
 nul = [arsenal1, "respawn_vehicle_west"] execVM "R3F_LOG\USER_FUNCT\do_not_lose_it.sqf";
 nul = [remise1, "respawn_vehicle_west"] execVM "R3F_LOG\USER_FUNCT\do_not_lose_it.sqf";
@@ -48,16 +41,21 @@ nul = [remise2, "respawn_vehicle_west"] execVM "R3F_LOG\USER_FUNCT\do_not_lose_i
 
 nul = [conteneur, "respawn_vehicle_west"] execVM "R3F_LOG\USER_FUNCT\do_not_lose_it.sqf";
 nul = [conteneur2, "respawn_vehicle_west"] execVM "R3F_LOG\USER_FUNCT\do_not_lose_it.sqf";
-nul = [conteneur1_1, "respawn_vehicle_west"] execVM "R3F_LOG\USER_FUNCT\do_not_lose_it.sqf";
-nul = [conteneur2_1, "respawn_vehicle_west"] execVM "R3F_LOG\USER_FUNCT\do_not_lose_it.sqf";
-
-nul = [arsenal1_1, "respawn_vehicle_east"] execVM "R3F_LOG\USER_FUNCT\do_not_lose_it.sqf";
-nul = [remise1_1, "respawn_vehicle_east"] execVM "R3F_LOG\USER_FUNCT\do_not_lose_it.sqf";
-nul = [arsenal2_1, "respawn_vehicle_east"] execVM "R3F_LOG\USER_FUNCT\do_not_lose_it.sqf";
-nul = [remise2_1, "respawn_vehicle_east"] execVM "R3F_LOG\USER_FUNCT\do_not_lose_it.sqf";
 
 _peuplement = scriptNull;
 if (BwS_COS) then {_peuplement = [] execVM "cos\cosInit.sqf";} else {_peuplement = [] execVM "DCL\init.sqf";};
 waituntil {scriptdone _peuplement};
 
+if (!BwS_headlessclient_on_off) then
+{
+	"ia773" serverCommand "#lock";
+	diag_log "/*************************** FERMETURE DU SERVEUR ***************************\";
+	nul = [] execVM "scripts\invasions\loop.sqf"; 
+	
+	// homed, patrouilles, etc
+	_occupation = [] spawn BwS_fn_occupation;
+	systemChat "Occupation en cours";
+	waituntil {scriptDone _occupation};
+	diag_log "Occupation Terminée";
+};
 diag_log "/*********************** FIN initServer.sqf ***********************\";

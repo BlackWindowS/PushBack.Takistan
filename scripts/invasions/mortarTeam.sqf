@@ -7,7 +7,7 @@ private ["_vehicule"];
 
 // _eastHQ = createCenter east; _group = createGroup _eastHQ;
 
-_position = position (ROADS select (floor(random(count ROADS))));
+_position = position (selectRandom ROADS);
 _position set [0, (_position select 0)-300+random(600)];
 _position set [1, (_position select 1)-300+random(600)];
 

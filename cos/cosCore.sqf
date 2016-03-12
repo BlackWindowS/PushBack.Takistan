@@ -18,7 +18,7 @@ _information=server getvariable _popVar;
  IF (debugCOS) 
 		then {
 	COSGlobalSideChat=[_civilians,_vehicles,_parked, _mkr];publicvariable "COSGlobalSideChat";
-	player groupChat (format ["Town:%4 .Civilians:%1 .Vehicles:%2 .Parked:%3",_civilians,_vehicles,_parked, _mkr]);//for singleplayer
+	player groupChat (format ["Town:%4 Civilians:%1 Vehicles:%2 Parked:%3",_civilians,_vehicles,_parked, _mkr]);//for singleplayer
 		};	
 
 _showRoads=false;				
@@ -41,6 +41,7 @@ waituntil {!populating_COS};
 populating_COS=true;
 _glbGrps=server getvariable "cosGrpCount";
 
+if ( ({side _x == CIVILIAN} count allGroups) >= 135) exitWith {};
 
 //SPAWN CIVILIANS NOW
 _civilianArray=[];

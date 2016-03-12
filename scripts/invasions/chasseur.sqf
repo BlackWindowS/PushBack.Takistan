@@ -13,7 +13,7 @@ createVehicleCrew _chasseur;
 
 // le fait aller sur n'imp quel joueur et l'engage
 
-_cible = BwS_joueurs select (floor(random(count(BwS_joueurs))));
+_cible = selectRandom allPlayers;
 
 (driver _chasseur) reveal [_cible, 4];
 

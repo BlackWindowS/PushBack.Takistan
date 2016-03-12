@@ -10,7 +10,7 @@ if ((random 100) < 15) then {
 	if ((random 100) < 10) then {
 		// suicide bomber ! on lui ajoute une ceinture
 		_unit addVest "V_BandollierB_khk";
-		waituntil { if (BwS_nombreJoueurs != 0) then { _unit move (position ([_unit] call BwS_fn_nearestPlayableUnit)); sleep 1; (_unit distance ([_unit] call BwS_fn_nearestPlayableUnit)) < 10} else {false}; };
+		waituntil { if (BwS_nombreJoueurs != 0) then { _unit move (position ([_unit] call BwS_fn_nearestPlayer)); sleep 1; (_unit distance ([_unit] call BwS_fn_nearestPlayer)) < 10} else {false}; };
 		// EXPLOSIONNNNN
 		if (alive _unit) then {
 			"Bo_Mk82" createVehicle (position _unit); 
@@ -19,7 +19,7 @@ if ((random 100) < 15) then {
 	else {
 		// attaque à la kalash		
 		// lorsque les mecs sont proche de lui (- de 100m)
-		waituntil { if (BwS_nombreJoueurs != 0) then { _unit move (position ([_unit] call BwS_fn_nearestPlayableUnit)); sleep 1; (_unit distance ([_unit] call BwS_fn_nearestPlayableUnit)) < 100} else {false}; };
+		waituntil { if (BwS_nombreJoueurs != 0) then { _unit move (position ([_unit] call BwS_fn_nearestPlayer)); sleep 1; (_unit distance ([_unit] call BwS_fn_nearestPlayer)) < 100} else {false}; };
 		
 		// aller dans la maison la plus proche
 		_unit move (position nearestBuilding (position _unit));
@@ -30,8 +30,8 @@ if ((random 100) < 15) then {
 		_unit addMagazine "30Rnd_65x39_caseless_green";
 		_unit addMagazine "30Rnd_65x39_caseless_green";
 		// attaquer les pax
-		_unit doFire ([_unit] call BwS_fn_nearestPlayableUnit);
-		while {alive _unit} do { if (BwS_nombreJoueurs != 0) then { _unit move (position ([_unit] call BwS_fn_nearestPlayableUnit)); sleep 1;} else {false};};
+		_unit doFire ([_unit] call BwS_fn_nearestPlayer);
+		while {alive _unit} do { if (BwS_nombreJoueurs != 0) then { _unit move (position ([_unit] call BwS_fn_nearestPlayer)); sleep 1;} else {false};};
 	};
 	
 };

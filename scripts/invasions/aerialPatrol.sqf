@@ -2,11 +2,11 @@
 
 private ["_randomPos", "_veh", "_types"];
 // spawn d'un vehicule aerien
-_randomPos = position (ROADS select (floor(random(count ROADS))));
+_randomPos = position (selectRandom ROADS);
 _randomPos set [2, 1000];
 
 _types = ["RHS_Mi8amt_chdkz"];
-_veh = createVehicle [(_types select (floor(random(count(_types))))), _randomPos, [], 0, "FLY"];
+_veh = createVehicle [(selectRandom _types), _randomPos, [], 0, "FLY"];
 createVehicleCrew _veh;
 
 if (BwS_Debug) then { ["aeronef", _randomPos, "ColorRed"] spawn BwS_fn_creerMarqueur; };

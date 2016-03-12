@@ -15,7 +15,7 @@ BwS_fn_localiser_joueurs =
 	
 	private ["_position"];
 	
-	if (BwS_nombreJoueurs != 0) then {
+	if ((count allPlayers) != 0) then {
 		if (isDedicated) then {
 			private ["_list_of_entities","_nb_playble_units_in_radius","_cible"];
 			
@@ -49,10 +49,10 @@ BwS_fn_localiser_joueurs =
 	_position
 };
 	
-BwS_fn_nearestPlayableUnit = 
+BwS_fn_nearestPlayer = 
 {
 	private ["_nearest"];
-	if (BwS_nombreJoueurs != 0) then {
+	if ((count allPlayers) != 0) then {
 		if (isDedicated) then {
 			private ["_unit", "_distance_de_l_objet_actuel", "_distance_du_plus_proche"];
 			_unit = (_this select 0);
@@ -231,5 +231,23 @@ BwS_fn_occuper_une_location =
 	waitUntil {(({alive _x}count (units _group)) == 0) && (({alive _x}count (units _groupHomed)) == 0)};
 };
 
+BwS_fn_buildings_inAngleSector =
+{
+	//[<array buildings>, <unit>, <angle>, <to unit>] call BwS_fn_buildings_inAngleSector;
+	private ["_array_buildings", "_unit", "_angle", "_toUnit", "_buildings_inAngleSector"];
+	_array_buildings = _this select 0;
+	_unit = _this select 1;
+	_angle = _this select 2;
+	_toUnit = _this select 3;
+	
+	_buildings_inAngleSector = [];
+	{
+		if ([getPos _unit, _unit getDir _toUnit, _angle, getPos _x] call BIS_fnc_inAngleSector) then
+		{
+			_buildings_inAngleSector pushBack _x;
+		};
+	} forEach _array_buildings;
+	_buildings_inAngleSector
+};
 
 
