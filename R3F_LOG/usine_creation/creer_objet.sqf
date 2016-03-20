@@ -138,6 +138,7 @@ else
 							else
 							{
 								systemChat format [STR_R3F_LOG_action_creer_fait, getText (configFile >> "CfgVehicles" >> (typeOf _objet) >> "displayName")];
+								diag_log format [STR_R3F_LOG_action_creer_fait, getText (configFile >> "CfgVehicles" >> (typeOf _objet) >> "displayName"), " pour un cout de ", _cout, " credits."];
 							};
 							R3F_LOG_mutex_local_verrou = false;
 						};

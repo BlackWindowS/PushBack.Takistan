@@ -6,6 +6,7 @@
 	sleep 0.01;
 } forEach allGroups;
 
-// {
-	// deleteVehicle _x; 
-// } forEach allDead;
+{
+	_x enableSimulationGlobal true;
+	deleteVehicle _x; 
+} forEach allDead;

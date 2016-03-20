@@ -52,4 +52,9 @@ else
 		"Un civil à été tué. Pénalité financière !" remoteExec ["systemChat"];
 		[usine_us, -2000] call BwS_fn_ajouter_credits_usine;
 	}]; 
+	
+	_unit addeventhandler ['FiredNear', {
+				(_this select 0) playMove 'AmovPercMstpSnonWnonDnon_AmovPercMstpSsurWnonDnon';
+				(_this select 0) stop true;
+			}];
 };

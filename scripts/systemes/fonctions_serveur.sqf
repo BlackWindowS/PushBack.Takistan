@@ -250,4 +250,22 @@ BwS_fn_buildings_inAngleSector =
 	_buildings_inAngleSector
 };
 
+BwS_fn_faut_il_les_simuler =
+{
+	private _nombre_d_unite_ennemies_simulees = {(simulationEnabled _x) && (side _x == resistance)} count allunits;
+	
+	if (_nombre_d_unite_ennemies_simulees <= 50) then 
+	{ true } else { false };
+};
+
+BwS_fn_faut_il_produire_des_pedestres =
+{
+	(({(_x distance (_this select 0)) <= 3000} count allPlayers > 0) && ({side _x == resistance} count allUnits) < 200 && ({(_x distance (_this select 0)) <= 20} count allPlayers == 0))
+};
+
+BwS_fn_faut_il_produire_des_vehicules =
+{
+	(({(_x distance (_this select 0)) <= 3000} count allPlayers > 0) && ({side _x == resistance} count allUnits) < 200 && ({(_x distance (_this select 0)) <= 20} count allPlayers == 0))
+};
+
 

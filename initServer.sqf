@@ -7,7 +7,7 @@ BwS_joueurs_BwS = ["76561198059264494", "76561198067811595", "76561198090076779"
 publicVariable "BwS_joueurs_BwS";
 
 BwS_Debug = true;
-BwS_COS = true; // ce sont 2 systemes de peuplement : DCL et COS
+BwS_COS = false; // ce sont 2 systemes de peuplement : DCL et COS
 BwS_DCL = !BwS_COS;
 
 if (!isDedicated) then {BwS_nombreJoueurs = 1} else {BwS_nombreJoueurs = count playableUnits};

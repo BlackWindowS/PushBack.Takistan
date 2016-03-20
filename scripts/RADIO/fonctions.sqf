@@ -39,7 +39,7 @@ BwS_fn_gestion_radio = {
 			};
 		};
 		
-		sleep 1;
+		sleep 10;
 	};
 };
 

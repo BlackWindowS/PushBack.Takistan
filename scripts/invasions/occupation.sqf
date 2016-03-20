@@ -17,20 +17,24 @@ BwS_fn_spawnOccupation = {
 		[_group, (position leader _group), 200] call BIS_fnc_taskPatrol;
 	};	
 	
-	// on prend 5% des maisons
-	_maisons resize floor(0.05*_nombreMaisons);
+	// on prend 10% des maisons
+	_maisons resize floor(0.1*_nombreMaisons);
 	_nombreMaisons = (count _maisons);
 
 	// spawner des homed en proportion
 	if (_nombreMaisons > 0) then 
 	{
 		{
-			_pos = (_x buildingPos floor(random(count([_x] call BIS_fnc_buildingPositions))));
+			_pos = (selectRandom ([_x] call BIS_fnc_buildingPositions));
 			if ((_pos select 0) != 0) then {
 				_groupHomed = createGroup resistance;
 				"rhs_g_Soldier_F" createUnit [_pos, _groupHomed]; 
 				_groupHomed setBehaviour "STEALTH";
-				[(units _groupHomed) select 0] call BwS_fn_gestion_radio;
+				_unit = (units _groupHomed) select 0;
+				[_unit] spawn BwS_fn_gestion_radio;
+				_unit setpos [(position _unit select 0),
+							  (position _unit select 1),
+							  (((position _unit) select 2) + 1.2)];
 			};
 		} forEach _maisons;
 	};

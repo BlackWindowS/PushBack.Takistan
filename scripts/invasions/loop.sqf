@@ -6,9 +6,11 @@ waitUntil {scriptDone _config};
 // peuplement du serveur
 if (BwS_var_casernes) then {for "_i" from 0 to 5+random(3) do {	[] spawn BwS_fn_caserne; };};
 
+if (BwS_var_usines) then {for "_i" from 0 to 5+random(3) do {	[] spawn BwS_fn_usines; };};
+
 for "_i" from 0 to (10 + (random 5)) do {	[] spawn BwS_fn_motorizedPatrolTeam; };
 
-for "_i" from 0 to (15 + (random 10)) do {	[] spawn BwS_fn_patrolTeam;		};
+// for "_i" from 0 to (15 + (random 10)) do {	[] spawn BwS_fn_patrolTeam;		};
 
 for "_i" from 0 to (3 + (random 0)) do {	[] spawn BwS_fn_mortier;	};
 

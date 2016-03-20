@@ -125,10 +125,7 @@ while { true } do
 			_civil setvariable ["civilrole", (_x select 2), true];
 			_civil setvariable ["destination", _position, false];
 			_civil setvariable ["wcprotected", true, false];
-			_civil addeventhandler ['FiredNear', {
-				(_this select 0) playMove 'AmovPercMstpSnonWnonDnon_AmovPercMstpSsurWnonDnon';
-				(_this select 0) stop true;
-			}];
+			
 			sleep 0.1;
 		}foreach _back;
 		wcgarbage = [_group] spawn walk;
