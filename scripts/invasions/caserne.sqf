@@ -19,7 +19,10 @@ _caserne = "Land_i_Barracks_V1_F" createVehicle _positionCaserne;
 _caserne setDir (random 360);
 
 _caserne setVectorUp surfaceNormal position _caserne;
-_caserne setPosATL [position _caserne select 0, position _caserne select 1, 0];
+_caserne setPosATL [position _caserne select 0, position _caserne select 1, 0.5];
+
+BwS_casernes pushBack _caserne;
+publicVariable "BwS_casernes";
 
 // marqueur pour debug
 if (BwS_Debug) then { ["caserne", _positionCaserne, "ColorBlue"] spawn BwS_fn_creerMarqueur; };

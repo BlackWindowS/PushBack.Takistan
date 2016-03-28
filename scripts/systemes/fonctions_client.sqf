@@ -39,3 +39,18 @@ BwS_fn_RADAR_effacer_marqueurs = {
 		};
 	} forEach allMapMarkers;
 };
+
+BwS_fn_afficher_marqueurs =
+{
+	_marqueurs = ["PC"];
+	
+	{
+		_x setMarkerAlphaLocal 1;
+	} forEach _marqueurs;
+	
+	sleep 60;
+	
+	{
+		_x setMarkerAlphaLocal 0;
+	} forEach _marqueurs;
+};

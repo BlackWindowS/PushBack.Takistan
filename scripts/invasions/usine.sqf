@@ -22,7 +22,10 @@ _dir =(random 360);
 _usine setDir _dir;
 
 _usine setVectorUp surfaceNormal position _usine;
-_usine setPosATL [position _usine select 0, position _usine select 1, 0];
+_usine setPosATL [position _usine select 0, position _usine select 1, 1];
+
+BwS_usines pushBack _usine;
+publicVariable "BwS_usines";
 
 // marqueur pour debug
 if (BwS_Debug) then { ["usine", _positionusine, "ColorBlue"] spawn BwS_fn_creerMarqueur; };
@@ -41,7 +44,7 @@ while {_continuer} do
 		_groupe = group driver _vehicule;
 		
 		// ajout d'un WP pour les groupe(s) puis BwS_fn_gestionPatrol
-		[_groupe] spawn BwS_fn_gestionPatrol;
+		// [_groupe] spawn BwS_fn_gestionPatrol;
 	
 		// cool down de BwS_var_cooldown_production_unites_motorisees
 		sleep BwS_var_cooldown_production_unites_motorisees;

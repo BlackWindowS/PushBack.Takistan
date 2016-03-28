@@ -89,10 +89,12 @@ sleep 1;
 _number = 1 + round (random DCLgroupsize);
 _group = creategroup DCLcivilianside;
 
+_positions = _positions - [[0,0,0]];
+
 for "_x" from 0 to _number do 
 {
-	_civiltype = civilclass call BIS_fnc_selectRandom;
-	_position = _positions call BIS_fnc_selectRandom;
+	_civiltype = selectRandom civilclass;
+	_position = selectRandom _positions;
 	_civilrole = "civil";
 	_back = _back + [[_civiltype, _position, _civilrole]];
 };

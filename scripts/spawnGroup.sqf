@@ -4,8 +4,9 @@ private ["_position", "_eastHQ", "_group", "_soldats", "_nombre"];
 
 _position = (_this select 0);
 _nombre = (_this select 1);
-
 _type = (_this select 2);
+
+_position = [_position, 0, 50, 10, 0, 20, 0] call BIS_fnc_findSafePos;
 
 if (count _this == 4) then {_eastHQ = createCenter (_this select 3);}
 else {_eastHQ = createCenter East;};

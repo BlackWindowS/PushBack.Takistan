@@ -31,7 +31,7 @@ _group = [[0, 0, 0], 4, resistance, resistance] call BwS_fn_spawnGroup;
 [driver _ifrit] join _group;
 
 sleep 15;
-_gestion = [_group] spawn BwS_fn_gestionPatrolSoftMoyen;
+// _gestion = [_group] spawn BwS_fn_gestionPatrolSoftMoyen;
 
 {	[_x] spawn BwS_fn_gestion_radio;	} forEach crew _ifrit;
 

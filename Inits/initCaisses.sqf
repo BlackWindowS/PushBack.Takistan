@@ -265,6 +265,10 @@
 // caisseChargeurs addItemCargoGlobal ["R3F_AC58", 300];
 // caisseChargeurs addItemCargoGlobal ["R3F_ECL40", 300];
 // caisseChargeurs addItemCargoGlobal ["R3F_FUM40", 300];
+// cursorTarget addItemCargoGlobal ["R3F_APAV40", 300];
+// cursorTarget addItemCargoGlobal ["R3F_AC58", 300];
+// cursorTarget addItemCargoGlobal ["R3F_ECL40", 300];
+// cursorTarget addItemCargoGlobal ["R3F_FUM40", 300];
 
 // {
 	// caisseExplosifs addMagazineCargoGlobal [_x, 50];

@@ -15,7 +15,7 @@ _positionGroup = position driver _veh;
 
 if (BwS_Debug) then { ["pick up", _positionGroup] spawn BwS_fn_creerMarqueur; };
 
-[_group] spawn BwS_fn_gestionPatrolSoftMoyen; 
+// [_group] spawn BwS_fn_gestionPatrolSoftMoyen; 
 
 {	[_x] spawn BwS_fn_gestion_radio;	} forEach crew _veh;
 

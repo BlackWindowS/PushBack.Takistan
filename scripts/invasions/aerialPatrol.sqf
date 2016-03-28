@@ -12,7 +12,7 @@ createVehicleCrew _veh;
 if (BwS_Debug) then { ["aeronef", _randomPos, "ColorRed"] spawn BwS_fn_creerMarqueur; };
 
 // gestionPatrolSoftMoyen
-[group driver _veh] spawn BwS_fn_gestionPatrolSoftMoyen;
+// [group driver _veh] spawn BwS_fn_gestionPatrolSoftMoyen;
 
 // BIS_fnc_taskPatrol 10 km
 [group driver _veh, _randomPos, 10000] call BIS_fnc_taskPatrol;

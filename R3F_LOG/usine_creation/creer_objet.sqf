@@ -138,7 +138,7 @@ else
 							else
 							{
 								systemChat format [STR_R3F_LOG_action_creer_fait, getText (configFile >> "CfgVehicles" >> (typeOf _objet) >> "displayName")];
-								diag_log format [STR_R3F_LOG_action_creer_fait, getText (configFile >> "CfgVehicles" >> (typeOf _objet) >> "displayName"), " pour un cout de ", _cout, " credits."];
+								(format ["%1%2%3%4", getText (configFile >> "CfgVehicles" >> (typeOf _objet) >> "displayName"), " pour un cout de ", _cout, " credits."]) remoteExec ["diag_log", 2, false]; 
 							};
 							R3F_LOG_mutex_local_verrou = false;
 						};

@@ -10,6 +10,10 @@ BwS_Debug = true;
 BwS_COS = false; // ce sont 2 systemes de peuplement : DCL et COS
 BwS_DCL = !BwS_COS;
 
+BwS_casernes = [];
+BwS_usines = [];
+BwS_var_groupes_a_exclure = [];
+
 if (!isDedicated) then {BwS_nombreJoueurs = 1} else {BwS_nombreJoueurs = count playableUnits};
 
 _compil = [] execVM "scripts\systemes\compilation_serveur.sqf";
@@ -21,7 +25,7 @@ nul = [] execVM "Inits\initCOPs.sqf";
 nul = [] execVM "scripts\missions\loop.sqf";
 // nul = [] execVM "scripts\eclairage.sqf";
 // nul = [] execVM "scripts\protectionBase.sqf";
-// nul = [] execVM "scripts\surveillerServeur.sqf";
+nul = [] execVM "scripts\systemes\surveillerServeur.sqf";
 // nul = [markerPos "COS"] execVM "scripts\HQ\COS.sqf"; // Commandement des OP Spéciales et non le système de peuplement
 
 _centerMap = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");

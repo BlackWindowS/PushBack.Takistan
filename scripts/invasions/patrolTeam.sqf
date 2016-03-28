@@ -15,4 +15,4 @@ _group = [_position, (3 + floor(random 6)), resistance, resistance] call BwS_fn_
 // Patrouille 
 if (BwS_Debug) then { ["patrouille", _position, "ColorGreen"] spawn BwS_fn_creerMarqueur; };
 
-[_group] spawn BwS_fn_gestionPatrol;
+// [_group] spawn BwS_fn_gestionPatrol;

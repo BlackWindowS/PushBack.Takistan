@@ -27,7 +27,7 @@ if ((player getVariable "droniste") isEqualTo true) then {joueurDroniste = true;
 
 _UIDs = ["_SP_PLAYER_", "76561198118269478", "76561198067811595"];
 
-if (getplayeruid player in _UIDs) then {player addAction ["<t color='#69c0ef' size='1.5'>Teleportafion</t>",{ onMapSingleClick {vehicle player setpos _pos; onMapSingleClick ""}}, [], 1, false, true, ""]};
+if (getplayeruid player in _UIDs) then {player addAction ["MENU ADMIN", {showCommandingMenu "#USER:BwS_MENU_ADMIN"}, [], 1, false, true, ""];};
 onMapSingleClick "_shift";
 
 [] spawn {

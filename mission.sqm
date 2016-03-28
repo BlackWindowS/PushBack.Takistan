@@ -5,7 +5,7 @@ class EditorData
 	angleGridStep=0.2617994;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=137;
+	toggles=9;
 	class ItemIDProvider
 	{
 		nextID=700;
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={12087.202,386.58453,2496.7644};
-		dir[]={0.74237525,-0.4199847,0.52223438};
-		up[]={0.34353819,0.9074896,0.24166799};
-		aside[]={0.57544285,-1.3774697e-006,-0.81800085};
+		pos[]={11879.965,378.22739,2529.7998};
+		dir[]={0.25489885,-0.44446787,0.8589074};
+		up[]={0.12646411,0.89575404,0.42613742};
+		aside[]={0.95880234,-1.3024837e-006,-0.28453815};
 	};
 };
 binarizationWanted=0;
@@ -656,18 +656,60 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={11883.568,371.90948,2544.2341};
-				angles[]={6.2607903,3.5476584,6.2623887};
+				position[]={11883.568,371.90933,2544.2344};
+				angles[]={6.2607927,3.5476611,6.2623811};
 			};
 			side="Empty";
 			class Attributes
 			{
 				skill=0.60000002;
-				init="nul = [this] execVM ""scripts\zone_logistique\repairSign.sqf""; nul = [this] execVM ""scripts\zone_logistique\rearmSign.sqf""; nul = [this] execVM ""scripts\zone_logistique\refuelSign.sqf"";nul = [this] execVM ""scripts\hopital\hosto.sqf"";";
+				init="nul = [this] execVM ""scripts\zone_logistique\vidage.sqf"";nul = [this] execVM ""scripts\zone_logistique\repairSign.sqf""; nul = [this] execVM ""scripts\zone_logistique\rearmSign.sqf""; nul = [this] execVM ""scripts\zone_logistique\refuelSign.sqf"";nul = [this] execVM ""scripts\hopital\hosto.sqf"";";
 				name="remise0";
 			};
 			id=73;
 			type="B_CargoNet_01_ammo_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="[[[[""arifle_MXC_F"",""arifle_MXM_F"",""arifle_MX_F"",""arifle_MX_GL_F"",""arifle_MX_SW_F"",""arifle_SDAR_F"",""hgun_P07_F"",""hgun_Pistol_heavy_01_F"",""launch_NLAW_F"",""launch_Titan_F"",""launch_Titan_short_F"",""SMG_01_F"",""srifle_EBR_F"",""srifle_LRR_camo_F"",""srifle_LRR_F"",""FirstAidKit"",""Medikit"",""MineDetector""],[4,2,8,4,4,2,2,2,2,2,2,2,2,2,2,10,1,1]],[[""100Rnd_65x39_caseless_mag_Tracer"",""11Rnd_45ACP_Mag"",""16Rnd_9x21_Mag"",""1Rnd_HE_Grenade_shell"",""1Rnd_SmokeBlue_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""1Rnd_SmokeOrange_Grenade_shell"",""1Rnd_SmokePurple_Grenade_shell"",""1Rnd_SmokeRed_Grenade_shell"",""1Rnd_SmokeYellow_Grenade_shell"",""1Rnd_Smoke_Grenade_shell"",""20Rnd_556x45_UW_mag"",""20Rnd_762x51_Mag"",""30Rnd_45ACP_Mag_SMG_01"",""30Rnd_556x45_Stanag_red"",""30Rnd_65x39_caseless_mag"",""3Rnd_HE_Grenade_shell"",""7Rnd_408_Mag"",""APERSBoundingMine_Range_Mag"",""APERSMine_Range_Mag"",""APERSTripMine_Wire_Mag"",""ATMine_Range_Mag"",""B_IR_Grenade"",""ClaymoreDirectionalMine_Remote_Mag"",""DemoCharge_Remote_Mag"",""HandGrenade"",""Laserbatteries"",""MiniGrenade"",""SatchelCharge_Remote_Mag"",""SLAMDirectionalMine_Wire_Mag"",""SmokeShell"",""SmokeShellBlue"",""SmokeShellGreen"",""SmokeShellOrange"",""SmokeShellPurple"",""SmokeShellRed"",""SmokeShellYellow"",""Titan_AA"",""Titan_AP"",""Titan_AT"",""UGL_FlareGreen_F"",""UGL_FlareWhite_F""],[16,14,14,15,2,2,2,2,2,2,2,6,24,14,6,52,3,12,5,5,5,5,8,5,5,24,5,24,5,5,2,2,2,2,2,2,2,6,6,6,2,2]],[[""Binocular"",""Laserdesignator"",""Rangefinder"",""acc_flashlight"",""acc_pointer_IR"",""ItemGPS"",""muzzle_snds_acp"",""muzzle_snds_B"",""muzzle_snds_H"",""muzzle_snds_H_SW"",""muzzle_snds_L"",""optic_Aco"",""optic_Aco_smg"",""optic_DMS"",""optic_Hamr"",""optic_Holosight"",""optic_LRPS"",""optic_MRD"",""optic_NVS"",""optic_SOS"",""optic_tws"",""optic_tws_mg"",""ToolKit""],[1,1,1,5,5,5,5,5,5,1,5,2,2,2,2,2,2,2,2,2,2,2,1]],[[],[]]],false]";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ace_isMedicalFacility";
+					expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=2;
+			};
 		};
 		class Item24
 		{
@@ -4059,8 +4101,8 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={12102.797,376.565,2515.9546};
-				angles[]={0.079830162,0,0.071872488};
+				position[]={12102.797,376.56497,2515.9551};
+				angles[]={0.079831354,0,0.071872659};
 			};
 			id=568;
 			type="ACE_moduleEquipFRIES";
@@ -4161,8 +4203,8 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={12105.058,376.72668,2515.9683};
-				angles[]={0.079830162,0,0.071872488};
+				position[]={12105.058,376.72668,2515.968};
+				angles[]={0.079831354,0,0.071872659};
 			};
 			id=570;
 			type="ACE_VehicleLock_ModuleSetup";
@@ -4202,7 +4244,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=-1;
+							value=0;
 						};
 					};
 				};
@@ -4339,8 +4381,8 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={12104.058,376.39557,2519.1655};
-				angles[]={0.087776273,0,0.071873315};
+				position[]={12104.058,376.39551,2519.166};
+				angles[]={0.0877726,0,0.071872659};
 			};
 			id=573;
 			type="ACE_moduleMedicalSettings";
@@ -5010,7 +5052,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=2;
+							value=0;
 						};
 					};
 				};

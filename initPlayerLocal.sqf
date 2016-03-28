@@ -12,9 +12,11 @@ if (hasInterface) then
 	nul = [] execVM "scripts\FOB.sqf";
 	nul = [] execVM "scripts\gestions\COPs_client.sqf";
 	nul = [] execVM "Inits\initFOBs.sqf";
+	nul = [] execVM "Inits\initMenus.sqf";
 
 	BwS_MUTEX_action_en_cours = false;
 	BwS_MUTEX_peut_rejoindre_champ_de_bataille = true;
+	BwS_var_dommages_autorises = true;
 
 	["TFAR_EH_communique", "OnTangent", {
 		_unit = _this select 0;
@@ -44,4 +46,6 @@ if (hasInterface) then
 	if ((player getVariable "droniste") isEqualTo true) then {joueurDroniste = true;};
 	
 	nul = [] execVM "scripts\systemes\addActions.sqf";
+	
+	nul = [] spawn BwS_fn_afficher_marqueurs;
 };

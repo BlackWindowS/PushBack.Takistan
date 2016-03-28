@@ -120,7 +120,8 @@ private ["_eastHQ", "_group", "_soldats"];
 _group = [_position, _qttPax, resistance, resistance] call BwS_fn_spawnGroup;
 sleep 1;
 [_group, _position, 50] call BIS_fnc_taskPatrol;
-[_group] spawn BwS_fn_gestionPatrolSoftMoyen;
+BwS_var_groupes_a_exclure pushBackUnique _group;
+// [_group] spawn BwS_fn_gestionPatrolSoftMoyen;
 
 // Brouilleur radio
 _posX = (_position select 0)-30+random(60);

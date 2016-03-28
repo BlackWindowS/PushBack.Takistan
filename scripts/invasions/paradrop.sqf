@@ -42,7 +42,7 @@ _delay = 1;
 
 } forEach (units _group);
 [_group, position leader _group, 500] call BIS_fnc_taskPatrol;
-[_group] spawn BwS_fn_gestionPatrol;
+// [_group] spawn BwS_fn_gestionPatrol;
 
 // retour de l'helico
 waitUntil { unitReady driver _veh };

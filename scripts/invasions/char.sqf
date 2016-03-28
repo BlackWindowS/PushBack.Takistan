@@ -19,7 +19,7 @@ _group = group driver _char;
 if (BwS_Debug) then { ["char", position leader _group, "ColorRed"] spawn BwS_fn_creerMarqueur; };
 
 // déplacement jusque point random
-_gestion = [_group] spawn BwS_fn_gestionPatrolSoft; 
+// _gestion = [_group] spawn BwS_fn_gestionPatrolSoft; 
 
 _pos = position (selectRandom ROADS);
 _pos set [2, 0];
@@ -28,7 +28,7 @@ waituntil {sleep 0.1; unitReady driver _char};
 sleep 3600;
 terminate _gestion;
 
-_gestion = [_group] spawn BwS_fn_gestionPatrolSoftMoyen;
+// _gestion = [_group] spawn BwS_fn_gestionPatrolSoftMoyen;
 
 while {alive driver _char} do {
 	_pos = position (selectRandom ROADS);
