@@ -2,6 +2,8 @@
 
 // [_group, (position leader _group), 500] call BIS_fnc_taskPatrol;
 
+diag_log "Gestion patrouille RUNNING";
+
 while {true} do
 {
 	{
@@ -21,10 +23,13 @@ while {true} do
 						{_x reveal _mechant} forEach allPlayers;
 					} forEach units _group;
 					(vehicle leader _group) enableSimulationGlobal true;
-					[format ["Nous venons de resimuler le groupe %1 car le joueur le plus proche etait %2", _group, _nearestPlayer]] call BwS_fn_diag_log;
+					[format ["Nous venons de resimuler le groupe %1 car le joueur le plus proche etait %2 à une distance de %3", _group, name _nearestPlayer, ((leader _group) distance _nearestPlayer)]] call BwS_fn_diag_log;
 				};
 				
-				_group move position _nearestPlayer;
+				if !(_group in BwS_var_groupes_a_exclure) then 
+				{
+					_group move position _nearestPlayer;
+				};
 			} 
 			else
 			{
@@ -32,7 +37,7 @@ while {true} do
 				{
 					{	_x enableSimulationGlobal false;	} forEach units _group;
 					(vehicle leader _group) enableSimulationGlobal false;
-					[format ["Nous venons de désimuler le groupe %1 car le joueur le plus proche etait %2", _group, _nearestPlayer]] call BwS_fn_diag_log;
+					[format ["Nous venons de désimuler le groupe %1 car le joueur le plus proche etait %2 à une distance de %3", _group, name _nearestPlayer, ((leader _group) distance _nearestPlayer)]] call BwS_fn_diag_log;
 				};
 			};
 		};

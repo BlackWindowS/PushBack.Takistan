@@ -9,6 +9,7 @@ Les usines peuvent être totalement détruites ou bien reconstruites au bout d'u
 
 private ["_usine", "_continuer", "_dir", "_types"];
 
+// _types = ["O_APC_Wheeled_02_rcws_F", "O_APC_Tracked_02_cannon_F", "O_MBT_02_cannon_F", "O_MRAP_02_hmg_F"];
 _types = ["rhs_t72bb_chdkz", "rhs_bmd1_chdkz", "rhs_btr70_chdkz", "rhs_uaz_ags_chdkz"];
 
 // creation d'une usine position aléatoire
@@ -42,9 +43,6 @@ while {_continuer} do
 		_vehicule setDir (_dir-90);
 		createVehicleCrew _vehicule;
 		_groupe = group driver _vehicule;
-		
-		// ajout d'un WP pour les groupe(s) puis BwS_fn_gestionPatrol
-		// [_groupe] spawn BwS_fn_gestionPatrol;
 	
 		// cool down de BwS_var_cooldown_production_unites_motorisees
 		sleep BwS_var_cooldown_production_unites_motorisees;

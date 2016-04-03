@@ -36,9 +36,6 @@ while {_continuer} do
 	{
 		// creation de groupe(s) de combat
 		_groupe = ([(_caserne buildingPos floor(random(count([_caserne] call BIS_fnc_buildingPositions)))), 3 + floor(random 6) , resistance, resistance] call BwS_fn_spawnGroup);
-		
-		// ajout d'un WP pour les groupe(s) puis BwS_fn_gestionPatrol
-		[_groupe] spawn BwS_fn_gestionPatrol;
 	
 		// cool down de BwS_var_cooldown_production_unites_pedestres
 		sleep BwS_var_cooldown_production_unites_pedestres;
