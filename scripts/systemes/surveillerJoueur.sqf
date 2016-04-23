@@ -1,4 +1,4 @@
-#define JOUEUR_EST_DANS_PC ((player distance (nearestObject [player, "Land_Cargo_Tower_V1_F"])) < 10) && ((getPosATL player select 2) > 12) && (playerInHQ isEqualTo false) && ((((getMarkerPos "PC") distance (position player)) < 20) || (((getMarkerPos "PC_1") distance (position player)) < 20))
+JOUEUR_EST_DANS_PC = {((player distance (nearestObject [player, "Land_Cargo_Tower_V1_F"])) < 10) && ((getPosATL player select 2) > 12) && (playerInHQ isEqualTo false) && ((((getMarkerPos "PC") distance (position player)) < 20) || (((getMarkerPos "PC_1") distance (position player)) < 20))};
 
 #define CONDITION_DRONISTE ((("B_UavTerminal" in (items player + assignedItems player)) || ("O_UavTerminal" in (items player + assignedItems player))) && !joueurDroniste)
 
@@ -28,6 +28,7 @@ if ((player getVariable "droniste") isEqualTo true) then {joueurDroniste = true;
 _UIDs = ["_SP_PLAYER_", "76561198118269478", "76561198067811595"];
 
 if (getplayeruid player in _UIDs) then {player addAction ["MENU ADMIN", {showCommandingMenu "#USER:BwS_MENU_ADMIN"}, [], 1, false, true, ""];};
+
 onMapSingleClick "_shift";
 
 [] spawn {
@@ -38,7 +39,13 @@ onMapSingleClick "_shift";
 			if !(player getVariable ["tf_unable_to_use_radio", false]) then 
 			{
 				BwS_script_vehiculeRadar = [] execVM "scripts\vehiculeRadar.sqf";
-				waitUntil {scriptDone BwS_script_vehiculeRadar};		
+				waitUntil {scriptDone BwS_script_vehiculeRadar};	
+				BwS_marqueur_brouillage setMarkerAlphaLocal 0;
+			}
+			else
+			{
+				BwS_marqueur_brouillage setMarkerAlphaLocal 1;
+				BwS_marqueur_brouillage setMarkerPos (position vehicle player);
 			};
 		};
 		sleep 0.01;
@@ -47,8 +54,8 @@ onMapSingleClick "_shift";
 
 [] spawn {
 	BwS_MUTEX_peut_rejoindre_champ_de_bataille = false;
-	_futur = time + 120;
-	waitUntil {hintSilent format ["%1:%2 avant TP possible", floor ((_futur-time)/60), floor ((_futur-time)%60)]; sleep 1; time >= _futur}; 
+	// _futur = time + 120;
+	// waitUntil {hintSilent format ["%1:%2 avant TP possible", floor ((_futur-time)/60), floor ((_futur-time)%60)]; sleep 1; time >= _futur}; 
 	BwS_MUTEX_peut_rejoindre_champ_de_bataille = true;
 	hint "TP possible";
 };
@@ -62,15 +69,18 @@ while {alive player} do
 {
 	[player, "OperationPushBack"] call BIS_fnc_setUnitInsignia;
 	
-	if (JOUEUR_EST_DANS_PC) then
+	if (call JOUEUR_EST_DANS_PC) then
 	{
 		[player] execVM "scripts\HQ\HQ.sqf";
 		playerInHQ = true;
 		
+		// player addItemToBackpack "item_R3F_SIT_COMDE";
+		
 		waitUntil {((player distance (nearestObject [player, "Land_Cargo_Tower_V1_F"])) > 10) || ((getPosATL player select 2) < 12)};
 		
 		playerInHQ = false;
-		removeBackpack player;
+		// player removeItemFromBackpack "item_R3F_SIT_COMDE";
+		// removeBackpack player;
 	};
 	
 	if (CONDITION_DRONISTE) then // Pour le slot droniste

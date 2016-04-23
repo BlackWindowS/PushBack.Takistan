@@ -36,7 +36,11 @@ while {_continuer} do
 	{
 		// creation de groupe(s) de combat
 		_groupe = ([(_caserne buildingPos floor(random(count([_caserne] call BIS_fnc_buildingPositions)))), 3 + floor(random 6) , resistance, resistance] call BwS_fn_spawnGroup);
-	
+		{
+			if (typeOf _x == "B_G_soldier_exp_F" || typeOf _x == "O_soldier_exp_F" || typeof _x == "rhs_g_Soldier_exp_F") then {[_x] execVM "scripts\poseMines.sqf";};
+		} forEach units _groupe;
+		
+		BwS_var_unites_de_caserne pushBack _groupe;
 		// cool down de BwS_var_cooldown_production_unites_pedestres
 		sleep BwS_var_cooldown_production_unites_pedestres;
 	};

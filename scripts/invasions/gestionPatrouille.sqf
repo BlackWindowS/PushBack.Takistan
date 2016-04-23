@@ -6,42 +6,47 @@ diag_log "Gestion patrouille RUNNING";
 
 while {true} do
 {
+	call BwS_fn_tri_des_unites;
 	{
 		_group = _x;
-		if (side leader _group == resistance) then
+		if (side _group == resistance) then
 		{
 			_nearestPlayer = [leader _group] call BwS_fn_nearestPlayer;
 			_prochain_check = 0;
 			
-			if (((leader _group) distance _nearestPlayer) < 3000 && (call BwS_fn_faut_il_les_simuler)) then // - de 3km
-			{
-				if !(simulationEnabled leader _group) then
+			{	
+				if (_x in BwS_var_unites) then 
 				{
-					{	
-						_x enableSimulationGlobal true;	
-						_mechant = _x;
-						{_x reveal _mechant} forEach allPlayers;
-					} forEach units _group;
-					(vehicle leader _group) enableSimulationGlobal true;
-					[format ["Nous venons de resimuler le groupe %1 car le joueur le plus proche etait %2 à une distance de %3", _group, name _nearestPlayer, ((leader _group) distance _nearestPlayer)]] call BwS_fn_diag_log;
-				};
-				
-				if !(_group in BwS_var_groupes_a_exclure) then 
-				{
-					_group move position _nearestPlayer;
-				};
-			} 
-			else
-			{
-				if (simulationEnabled (leader _group)) then 
+					_x enableSimulationGlobal true;	
+					_mechant = _x;
+					{_x reveal _mechant} forEach allPlayers;
+				}
+				else
 				{
 					{	_x enableSimulationGlobal false;	} forEach units _group;
-					(vehicle leader _group) enableSimulationGlobal false;
-					[format ["Nous venons de désimuler le groupe %1 car le joueur le plus proche etait %2 à une distance de %3", _group, name _nearestPlayer, ((leader _group) distance _nearestPlayer)]] call BwS_fn_diag_log;
+				};
+			} forEach units _group;
+
+			if !(_group in BwS_var_groupes_a_exclure) then 
+			{
+				if ((_nearestPlayer distance (getMarkerPos "PC")) > 500) then // si le joueur le plus proche est Ã  plus de 500m de la base on peut l'attaquer
+				{
+					if (({(_x distance _nearestPlayer) < 20} count allPlayers) > 3) then // si c'est un groupe => + de 3 unitÃ©s Ã  - de 20m de _nearestPlayer => permet les URR 
+					{
+						_group move position _nearestPlayer;
+						_group setFormation (selectRandom ["COLUMN","STAG COLUMN","WEDGE","ECH LEFT","ECH RIGHT","VEE","LINE","FILE","DIAMOND"]);
+						_group setSpeedMode "NORMAL";
+					};
 				};
 			};
-		};
-	} forEach (allGroups - BwS_var_groupes_a_exclure);
+		}; 
+		
+	} forEach (allGroups-BwS_var_groupes_a_exclure_simulation);
+	
+	if ((random 100 <= 1) && (count allplayers > 0)) then // 1 chance sur 100 toutes les 10 secondes (environ 1 raid tout les 16min)
+	{
+		[] spawn BwS_fn_raid;
+	};
 	
 	sleep 10;
 };

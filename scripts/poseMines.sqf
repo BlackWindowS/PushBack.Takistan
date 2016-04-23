@@ -17,7 +17,7 @@ if (count allMines < 20) then
 		
 	while {alive _mineur && _nombreMinesMax >= _nbMines} do
 	{
-		if (isOnRoad _mineur) then
+		if (isOnRoad _mineur && (random 100 < 25)) then
 		{
 			createMine [_type, position _mineur, [], (random 5) + 2.5];
 			_nbMines = _nbMines + 1;

@@ -92,6 +92,7 @@ BwS_fn_initCivil =
     };
 
 	[[_unit], "BwS_fn_controle", west, true] call BIS_fnc_MP;
+	[[_unit], "BwS_fn_interroger", west, true] call BIS_fnc_MP;
 };
 
 BwS_fn_controle =
@@ -116,6 +117,27 @@ BwS_fn_controle =
 		"<br/><t align='left'>Recherché : </t>", _wanted
 		];
 		
+	},
+	[],
+	1.5,
+    true,
+    true,
+    "",
+    "((player distance _target) < 2) && (speed _target == 0)"];
+};
+
+BwS_fn_interroger =
+{
+	(_this select 0) addAction [
+	"<t color='#ff0000'>Interroger</t>",
+	{
+		_unit = (_this select 0);
+		_position = position _unit;
+		_mine = (allMines select {_x distance _unit < 300}) select 0;
+		[player, format ["Un civil a repéré un objet étrange aux coordonnées %1 !", position _mine]] remoteExec ["sideChat", 0];
+		[position _mine, "hd_warning", "ColorRed", "Mine/IED"] call BwS_EBN_fn_placer_marqueur;
+		
+		[(_this select 0), (_this select 2)] remoteExec ["removeAction", 0, false];
 	},
 	[],
 	1.5,

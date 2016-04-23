@@ -162,6 +162,8 @@ CREATE_IED = {
 	_ied enableSimulation false;
 	_ied allowDamage false;
 	
+	BwS_IEDs pushback _ied;
+	
 	_scriptHandle = "";
 	if(allowExplosiveToTriggerIEDs) then {
 		_scriptHandle = [_ied, _sectionName, _iedName, _iedSize] spawn PROJECTILE_DETECTION;

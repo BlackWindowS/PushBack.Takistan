@@ -70,19 +70,22 @@ BwS_fn_detecter_radios =
 
 BwS_fn_brouillage_local =
 {
+	private ["_brouilleurs", "_joueurBrouille", "_coefficient"];
 	_brouilleurs = nearestObjects [player, ["Land_JetEngineStarter_01_F"], 3000];
 	_joueurBrouille = false;
+	_coefficient = 0;
 	if ((count _brouilleurs) > 0) then
 	{
 		{
 			_distance_de_brouillage_x = _x getVariable ["BwS_var_distance_de_brouillage", 1500];
 			if (((player distance _x) <= _distance_de_brouillage_x) && (alive _x)) then 
 			{
-				_joueurBrouille = true;
+				_coefficient = ((_distance_de_brouillage_x-(player distance _x))/(_distance_de_brouillage_x))*100; // ==> coef tend vers 100 quand on est proche				
+				_joueurBrouille = if ((random 100) <= _coefficient) then {true} else {false};
 			};
 		} forEach _brouilleurs; 
 	};
-	
+
 	player setVariable ["tf_unable_to_use_radio", _joueurBrouille];
 };
 

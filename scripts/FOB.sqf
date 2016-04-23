@@ -7,7 +7,7 @@ if (side player == west) then
 {
 	_array = [	[FOBa, "FOB Alpha"], 
 				[FOBb, "FOB Bravo"]];
-	_drapeauFOB = "flag_USA";
+	_drapeauFOB = "flag_france";
 };
 
 if (side player == east) then 

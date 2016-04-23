@@ -75,7 +75,7 @@ _trigger setTriggerStatements["", "", ""];
 
 while { ([(list _trigger)] call DCLcountplayer == 0) } do { sleep (random 5); };
 
-_buildings = nearestObjects[_position,["House"], 150];
+_buildings = nearestObjects[_position,["House"], 300];
 sleep 1;
 {
 	_index = 0;
@@ -89,14 +89,12 @@ sleep 1;
 _number = 1 + round (random DCLgroupsize);
 _group = creategroup DCLcivilianside;
 
-_positions = _positions - [[0,0,0]];
-
 for "_x" from 0 to _number do 
 {
 	_civiltype = selectRandom civilclass;
 	_position = selectRandom _positions;
 	_civilrole = "civil";
-	_back = _back + [[_civiltype, _position, _civilrole]];
+	_back pushBack [_civiltype, _position, _civilrole];
 };
 
 while { true } do 
@@ -109,7 +107,7 @@ while { true } do
 			if(alive _x) then 
 			{
 				_civilrole = _x getVariable "civilrole";
-				_back = _back + [[typeOf _x, position _x, _civilrole]];
+				_back pushBack [typeOf _x, position _x, _civilrole];
 				_x removeAllEventHandlers "Killed";
 				_x setDammage 1;
 				deleteVehicle _x;

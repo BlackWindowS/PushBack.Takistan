@@ -9,6 +9,7 @@ respawnVehicleDelay = 60;
 
 disabledAI = 1;
 enableDebugConsole = 1;
+disableChannels[]={1,2,3,4};
 
 corpseManagerMode = 1;
 wreckManagerMode = 1;

@@ -11,6 +11,11 @@ _veh = (selectRandom _tab) createVehicle _positionOnRoad;
 createVehicleCrew _veh;
 _group = group driver _veh;
 
+_groupePassager = [[0,0,0], (_veh emptyPositions "cargo"), resistance, resistance] call BwS_fn_spawnGroup;
+{[_x] join _group; _x moveInCargo _veh;} forEach units _groupePassager;
+
+BwS_var_unites_d_usine pushBack _group;
+
 _positionGroup = position driver _veh;
 
 if (BwS_Debug) then { ["pick up", _positionGroup] spawn BwS_fn_creerMarqueur; };

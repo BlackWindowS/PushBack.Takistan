@@ -12,7 +12,7 @@ _markers = [];
 	_nomMarker setMarkerShapeLocal "ICON";
 	_nomMarker setMarkerTypeLocal "hd_dot"; 
 	_nomMarker setMarkerAlphaLocal 1;
-	_nomMarker setMarkerTextLocal format ["%1", getText (configFile >> "CfgVehicles" >> typeof _x >> "DisplayName")];
+	_nomMarker setMarkerTextLocal format ["%1 (%2)", getText (configFile >> "CfgVehicles" >> typeof _x >> "DisplayName"), simulationEnabled _x];
 	_nomMarker setMarkerColorLocal "ColorEast";
 } forEach allUnits;
 

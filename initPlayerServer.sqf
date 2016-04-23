@@ -33,3 +33,5 @@
 	// _centerMap = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 	// ROADS = (_centerMap nearRoads 20000) - ((getMarkerPos "PC") nearRoads 1000) - ((getMarkerPos "PC_1") nearRoads 2000);
 // };
+
+// publicVariable "BwS_IEDs";

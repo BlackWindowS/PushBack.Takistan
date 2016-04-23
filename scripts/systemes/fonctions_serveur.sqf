@@ -250,11 +250,25 @@ BwS_fn_buildings_inAngleSector =
 	_buildings_inAngleSector
 };
 
-BwS_fn_faut_il_les_simuler =
+BwS_fn_tri_des_unites =
 {
-	private _nombre_d_unite_ennemies_simulees = {(simulationEnabled _x) && (side _x == resistance)} count allunits;
+	BwS_var_unites = [];
 	
-	if (_nombre_d_unite_ennemies_simulees <= 50) then 
+	{
+		if (side _x != west && (_x distance ([_x] call BwS_fn_nearestPlayer) <= 3000)) then
+		{
+			BwS_var_unites pushBack [_x, _x distance ([_x] call BwS_fn_nearestPlayer)];
+		};
+	} forEach allUnits+allDead;
+	
+	BwS_var_unites sort true;
+	{BwS_var_unites set [_forEachIndex, _x select 0]} forEach BwS_var_unites;
+	BwS_var_unites resize 50;
+};
+
+BwS_fn_faut_il_les_simuler =
+{	
+	if (({_x in BwS_var_unites} count units (_this select 0)) == count units (_this select 0)) then 
 	{ true } else { false };
 };
 

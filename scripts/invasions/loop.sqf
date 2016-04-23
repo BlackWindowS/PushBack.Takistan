@@ -27,10 +27,6 @@ for "_i" from 0 to (3 + (random 2)) do
 	[(selectRandom ["petit", "moyen", "grand"]), _position] spawn BwS_fn_camp;
 };
 
-diag_log "Faut Unlock mtn...";
-"ia773" serverCommand "#unlock";
-diag_log "/*************************** RE-OUVERTURE DU SERVEUR ***************************\";
-
 BwS_fn_loop = {
 	waitUntil {sleep 1800; (({side _x == resistance} count allUnits) < 50) && (count allPlayers == 0)};
 	execVM "scripts\invasions\loop.sqf";

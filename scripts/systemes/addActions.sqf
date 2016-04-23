@@ -1,3 +1,5 @@
+JOUEUR_EST_DANS_PC = {((player distance (nearestObject [player, "Land_Cargo_Tower_V1_F"])) < 10) && ((getPosATL player select 2) > 12) && (playerInHQ isEqualTo false) && ((((getMarkerPos "PC") distance (position player)) < 20) || (((getMarkerPos "PC_1") distance (position player)) < 20))};
+
 waitUntil {!isNull player};
 sleep 1;
 if (joueurEOD) then 
@@ -7,7 +9,7 @@ if (joueurEOD) then
 
 	[	
 		["Activer le détecteur de mines", 
-		{BwS_joueur_est_en_train_de_detecter = true;},
+		{BwS_joueur_est_en_train_de_detecter = true; player forceWalk true;},
 		[], 
 		1.5, 
 		false, 
@@ -18,7 +20,7 @@ if (joueurEOD) then
 
 	[	
 		["Désactiver le détecteur de mines", 
-		{BwS_joueur_est_en_train_de_detecter = false;},
+		{BwS_joueur_est_en_train_de_detecter = false; player forceWalk false;},
 		[], 
 		1.5, 
 		false, 

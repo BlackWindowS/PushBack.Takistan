@@ -1,5 +1,5 @@
 /* Written by Brian Sweeney - [EPD] Brian*/
-
+BwS_IEDs = [];
 if(isserver) then {
 	iedsAdded = false;
 	publicVariable "iedsAdded";

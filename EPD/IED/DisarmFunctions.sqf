@@ -26,7 +26,7 @@ DISARM_ACTION = {
 	//(_iedArray select 0) removeaction 0; //remove the disarm addaction
 	deleteMarker (_iedArray select 4); //remove the map marker
 	//hint "disarmed!";
-	
+	BwS_IEDs = BwS_IEDs - [(_iedArray select 0)];
 	
 	_chance = baseDisarmChance;
 	

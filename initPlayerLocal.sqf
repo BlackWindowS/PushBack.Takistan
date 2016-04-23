@@ -7,12 +7,14 @@ if (hasInterface) then
 {
 	fn_clr = {private ["_player"]; _player = _this select 0; _player unassignItem "NVGoggles"; removeAllWeapons _player; removeAllItems _player; removeVest _player; removeBackpack _player;};
 
-	[player] call fn_clr;
+	// [player] call fn_clr;
 
 	nul = [] execVM "scripts\FOB.sqf";
 	nul = [] execVM "scripts\gestions\COPs_client.sqf";
 	nul = [] execVM "Inits\initFOBs.sqf";
 	nul = [] execVM "Inits\initMenus.sqf";
+	nul = [] execVM "Inits\initMarkers.sqf";
+	// nul = [TABLEAU] execVM "scripts\HQ\retransmission.sqf";
 
 	BwS_MUTEX_action_en_cours = false;
 	BwS_MUTEX_peut_rejoindre_champ_de_bataille = true;

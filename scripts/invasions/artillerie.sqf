@@ -1,5 +1,5 @@
-//#define HEURE 3600
-//#define MINUTE 60
+#define HEURE 3600
+#define MINUTE 60
 
 private ["_mortier", "_tempsEntreFrappes", "_ammo"];
 
@@ -14,7 +14,7 @@ _ammo = switch (typeOf _mortier) do
 	default { "" };
 };
 
-//_tempsEntreFrappes = 1*HEURE+30*MINUTE; // toutes les 1h30
+_tempsEntreFrappes = 10*MINUTE; // toutes les 10 minutes
 
 while {alive _mortier} do 
 {
@@ -25,11 +25,12 @@ while {alive _mortier} do
 			if ((position _x) inRangeOfArtillery [[gunner _mortier], _ammo]) then
 			{
 				_pos = [(position _x select 0)+round(random(300))-150, (position _x select 1)+round(random(300))-150, 0];
-				(gunner _mortier) doArtilleryFire [_pos, _ammo, 1];
+				(gunner _mortier) doArtilleryFire [_pos, _ammo, 1+round(random(2))];
 			};
 		} forEach allPlayers;
 	};
-		
-	sleep 10;	
-	//sleep _tempsEntreFrappes;	
+	
+	vehicle _mortier setVehicleAmmoDef 1;
+	
+	sleep _tempsEntreFrappes;	
 };

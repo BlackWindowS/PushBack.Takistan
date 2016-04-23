@@ -15,7 +15,7 @@ while {true} do
 					sleep ((_this select 0) / 4);
 				};
 			};
-		} forEach allMines;	
+		} forEach (allMines+((player nearObjects 4) select {_x getVariable ["BwS_IED_est_un_IED", false]}));	
 	};
 	sleep 0.01;
 };

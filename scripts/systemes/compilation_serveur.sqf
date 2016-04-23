@@ -6,6 +6,7 @@ BwS_fn_brouilleur = compile preprocessFile "scripts\RADIO\brouilleur.sqf";
 BwS_fn_base = compile preprocessFile "scripts\invasions\base.sqf";
 BwS_fn_camp = compile preprocessFile "scripts\invasions\camp.sqf";
 BwS_fn_char = compile preprocessFile "scripts\invasions\char.sqf";
+BwS_fn_raid = compile preprocessFile "scripts\invasions\raid.sqf";
 BwS_fn_usines = compile preprocessFile "scripts\invasions\usine.sqf";
 BwS_fn_convois = compile preprocessFile "scripts\invasions\convois.sqf";
 BwS_fn_caserne = compile preprocessFile "scripts\invasions\caserne.sqf";
