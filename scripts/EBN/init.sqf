@@ -19,7 +19,7 @@ if (hasInterface) then
 		false, 
 		true, 
 		"User1",
-		"(""item_R3F_SIT_COMDE"" in (items player + assignedItems player)) || (vehicle player != player)"]
+		"(""item_R3F_SIT_COMDE"" in (items player + assignedItems player)) || ((typeof vehicle player == ""BwS_Fennek"") && (commander vehicle player == player))"]
 	] call CBA_fnc_addPlayerAction;
 
 

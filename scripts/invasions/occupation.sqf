@@ -14,6 +14,7 @@ BwS_fn_spawnOccupation = {
 	for "_i" from 0 to (_nombreMaisons/50) do 
 	{
 		_group = [(position _trigger), 3 + round(random(5)), resistance, resistance] call BwS_fn_spawnGroup;
+		BwS_var_groupes_a_exclure pushBack _group;
 		[_group, (position leader _group), 200] call BIS_fnc_taskPatrol;
 	};	
 	
@@ -36,6 +37,7 @@ BwS_fn_spawnOccupation = {
 						"rhs_g_Soldier_F" createUnit [_pos, _groupHomed]; 
 						_groupHomed setBehaviour "STEALTH";
 						_unit = (units _groupHomed) select 0;
+						BwS_var_homed pushBack _unit;
 						[_unit] spawn BwS_fn_gestion_radio;
 						_unit setpos [(position _unit select 0),
 									  (position _unit select 1),

@@ -28,7 +28,9 @@ if (side player == east) then
 while {true} do
 {
 	{
-		(_x select 1) setMarkerPosLocal position (_x select 0);
+		if ((_x select 0) != objNull) then {
+			(_x select 1) setMarkerPosLocal position (_x select 0);
+		};
 	} forEach _array;
 	sleep 10;
 };

@@ -17,6 +17,7 @@ BwS_var_groupes_a_exclure = [];
 BwS_var_groupes_a_exclure_simulation = [];
 BwS_var_unites_de_caserne = [];
 BwS_var_unites_d_usine = [];
+BwS_var_homed = [];
 
 BwS_IEDs = [];
 

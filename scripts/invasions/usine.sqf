@@ -15,6 +15,10 @@ _types = ["rhs_t72bb_chdkz", "rhs_bmd1_chdkz", "rhs_btr70_chdkz", "rhs_uaz_ags_c
 // creation d'une usine position aléatoire
 _positionusine = position (selectRandom ROADS);
 
+while {([_positionusine] call BwS_fn_nearestUsine) distance _positionusine < 1600} do { // pour mettre des usines tous les 1600 m globalement
+	_positionusine = position (selectRandom ROADS);
+};
+
 _positionusine set [0, (_positionusine select 0) - 200 + random 400];
 _positionusine set [1, (_positionusine select 1) - 200 + random 400];
 

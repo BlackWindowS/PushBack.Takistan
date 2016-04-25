@@ -282,4 +282,54 @@ BwS_fn_faut_il_produire_des_vehicules =
 	(({(_x distance (_this select 0)) <= 3000} count allPlayers > 0) && ({side _x == resistance} count allUnits) < 200 && ({(_x distance (_this select 0)) <= 20} count allPlayers == 0))
 };
 
+BwS_fn_nearestUsine = {
+	_positionUsine = _this select 0;
+	
+	_usines = [];
+	
+	{
+		_usines pushBack [_x, _x distance _positionUsine];
+	} forEach BwS_usines;
+	
+	_usines sort true;
+	{_usines set [_forEachIndex, _x select 0]} forEach _usines;
+	
+	(_usines select 0)
+};
+
+BwS_fn_nearestCaserne = {
+	_positionCaserne = _this select 0;
+	
+	_casernes = [];
+	
+	{
+		_casernes pushBack [_x, _x distance _positionCaserne];
+	} forEach BwS_casernes;
+	
+	_casernes sort true;
+	{_casernes set [_forEachIndex, _x select 0]} forEach _casernes;
+	
+	(_casernes select 0)
+};
+
+BwS_fn_sont_ils_en_convoi =
+{
+	_nearestPlayer = (_this select 0);
+	_vehiculesJoueurs = [];
+	
+	{ if (vehicle _x != _x) then {_vehiculesJoueurs pushBackUnique (vehicle _x)} } forEach allPlayers;
+	
+	(({(((_x distance _nearestPlayer) < 200))} count _vehiculesJoueurs) > 2)
+};
+
+
+
+
+
+
+
+
+
+
+
 

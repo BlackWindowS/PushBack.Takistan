@@ -1,8 +1,14 @@
-// serveur :
-	// => init donc création des IEDs
+/*
 
-// client :
-	// boucle principale
+	Script d'IEDs créé par [B.w.S] SoP pour la mission Operation PushBack
+
+	Réalisé en prenant les meilleurs morceaux du script de [EPD] Brian
+
+	http://www.armaholic.com/page.php?id=23995
+
+	WIP
+
+*/
 
 sleep 5;
 	
@@ -60,16 +66,10 @@ if (isServer) then
 		_IED = _randomType createVehicle ([_randomRoad] call EPD_FIND_LOCATION_BY_ROAD);
 
 		["IED", position _IED] spawn BwS_fn_creerMarqueur;
-		if (_IED != objNull) then {
-			//[_IED] spawn BwS_IED_fn_addAction
-			
+		if (_IED != objNull) then {			
 			_IED setVariable ["BwS_IED_est_un_IED", true, true];
 			_IED setVariable ["BwS_IED_force", selectRandom ["M_Mo_82mm_AT_LG", "Bo_Mk82", "HelicopterExploBig", "HelicopterExploSmall", "R_80mm_HE", "Bo_GBU12_LGB"], true];
-			
-			// [[_IED], "BwS_IED_fn_addAction", true, true, false] call BIS_fnc_MP; 
 		};
-		
-		//[params, functionName, target, isPersistent, isCall] call BIS_fnc_MP; 
 	};
 };
 

@@ -10,7 +10,12 @@ Les casernes peuvent être totalement détruites ou bien reconstruites au bout d
 private ["_caserne", "_continuer"];
 
 // creation d'une caserne position aléatoire
+
 _positionCaserne = position (selectRandom ROADS);
+
+while {([_positionCaserne] call BwS_fn_nearestCaserne) distance _positionCaserne < 1600} do { // pour mettre des casernes tous les 1600 m globalement
+	_positionCaserne = position (selectRandom ROADS);
+};
 
 _positionCaserne set [0, (_positionCaserne select 0) - 200 + random 400];
 _positionCaserne set [1, (_positionCaserne select 1) - 200 + random 400];
