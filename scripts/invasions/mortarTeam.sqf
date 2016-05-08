@@ -1,4 +1,4 @@
-
+scriptName "BwS_fn_mortier";
 // Création d'un binôme : chacun un sac.
 
 private ["_vehicule"];

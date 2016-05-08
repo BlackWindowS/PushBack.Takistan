@@ -1,4 +1,5 @@
 BwS_fn_gestion_radio = {
+	scriptName "BwS_fn_gestion_radio";
 	private ["_unit", "_unit_est_leader", "_tempsActuel", "_temps_dernier_rapport_au_hq"];
 	
 	_unit = _this select 0;
@@ -45,6 +46,7 @@ BwS_fn_gestion_radio = {
 
 BwS_fn_detecter_radios = 
 {
+	scriptName "BwS_fn_detecter_radios";
 	{
 		if (_x distance player <= (_this select 1)) then 
 		{
@@ -70,6 +72,7 @@ BwS_fn_detecter_radios =
 
 BwS_fn_brouillage_local =
 {
+	scriptName "BwS_fn_brouillage_local";
 	private ["_brouilleurs", "_joueurBrouille", "_coefficient"];
 	_brouilleurs = nearestObjects [player, ["Land_JetEngineStarter_01_F"], 3000];
 	_joueurBrouille = false;

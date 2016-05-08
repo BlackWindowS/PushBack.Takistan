@@ -1,3 +1,4 @@
+scriptName "BwS_fn_vilain";
 _unit = (_this select 0);
 
 if ((random 100) < 15) then {

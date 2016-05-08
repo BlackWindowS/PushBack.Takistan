@@ -133,11 +133,19 @@ BwS_fn_interroger =
 	{
 		_unit = (_this select 0);
 		_position = position _unit;
-		_mine = (allMines select {_x distance _unit < 300}) select 0;
-		[player, format ["Un civil a repéré un objet étrange aux coordonnées %1 !", position _mine]] remoteExec ["sideChat", 0];
-		[position _mine, "hd_warning", "ColorRed", "Mine/IED"] call BwS_EBN_fn_placer_marqueur;
+		_mine = selectRandom ((allMines+BwS_IEDs+BwS_var_homed) select {_x distance _unit < 300});
 		
+		if (_mine != objNull) then 
+		{
+			[format ["Un civil a repéré un objet étrange aux coordonnées %1 !", position _mine], {player sideChat _this}] remoteExec ["call", 0];
+			[position _mine, "hd_dot", "ColorRed", "Chose suspecte", 180] call BwS_EBN_fn_placer_marqueur;
+		}
+		else
+		{
+			[format ["Ce civil ne sait rien.", position _mine], {player sideChat _this}] remoteExec ["call", 0];
+		};
 		[(_this select 0), (_this select 2)] remoteExec ["removeAction", 0, false];
+		[[_this select 0, _this select 2], {(_this select 0) removeAction (_this select 1)}] remoteExec ["call", 0];
 	},
 	[],
 	1.5,
@@ -146,3 +154,22 @@ BwS_fn_interroger =
     "",
     "((player distance _target) < 2) && (speed _target == 0)"];
 };
+
+BwS_fn_pick_random =
+{
+	private ["_list", "_modifiedList", "_retour"];
+	_list = (_this select 0);
+
+    _modifiedList = [];    
+
+	{
+    	_elmt = _x;
+    	for "_i" from 0 to (_elmt select 1) do
+   	 {
+   		 _modifiedList pushback (_elmt select 0);
+   	 };
+	} forEach _list;
+	_retour = selectRandom _modifiedList;
+	_retour
+};
+

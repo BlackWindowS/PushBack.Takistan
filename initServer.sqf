@@ -28,6 +28,7 @@ _compil = [] execVM "scripts\systemes\compilation_serveur.sqf";
 waituntil {scriptdone _compil};
 
 nul = [] execVM "scripts\gestions\COPs_serveur.sqf";
+nul = [] execVM "scripts\gestions\gestion_casernes_usines.sqf";
 nul = [] execVM "Inits\FOBs_serveur.sqf";
 nul = [] execVM "Inits\initCOPs.sqf";
 // nul = [] execVM "scripts\missions\loop.sqf";
@@ -41,7 +42,7 @@ ROADS = (_centerMap nearRoads 20000) - ((getMarkerPos "PC") nearRoads 1000) - ((
 
 sleep 1;
 
-[] spawn { while {true} do {execVM "scripts\purgeur.sqf"; sleep 5000}; };
+[] spawn { scriptName "purgeur"; while {true} do {execVM "scripts\purgeur.sqf"; sleep 5000}; };
 
 [conteneur, arsenal1, remise1] execVM "inits\initConteneur.Sqf";
 [conteneur2, arsenal2, remise2] execVM "inits\initConteneur.Sqf";

@@ -24,7 +24,7 @@
  * 
  * @usage You can replace "my_object" by "this" if you put the line in the initialization line in the mission editor.
  */
-
+scriptName "do_not_lose_it";
 private ["_objet", "_pos_respawn"];
 
 _objet = _this select 0;

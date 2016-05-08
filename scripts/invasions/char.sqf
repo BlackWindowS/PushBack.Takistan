@@ -1,3 +1,4 @@
+scriptName "BwS_fn_char";
 ["Un char a ete spawn"] spawn BwS_fn_diag_log;
 
 private ["_randomPos", "_group", "_char", "_cible", "_wp", "_gestion", "_types"];

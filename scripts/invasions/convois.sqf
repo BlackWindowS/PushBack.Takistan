@@ -1,3 +1,4 @@
+scriptName "BwS_fn_convoi";
 /*
 	Script de gestion de convois entre camps par SoP pour la team B.w.S
 	

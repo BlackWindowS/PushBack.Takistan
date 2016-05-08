@@ -1,4 +1,4 @@
-
+scriptName "BwS_fn_patrolTeam";
 // Création d'une équipe d'infanterie puis qui patrouille
 
 private ["_group", "_position"];

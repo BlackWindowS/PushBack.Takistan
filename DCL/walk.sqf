@@ -17,7 +17,7 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 	*/
-
+scriptName "DCL_walk";
 	private [
 		"_allunits",
 		"_buildings",
@@ -70,7 +70,7 @@
 		// exclude all non civilian
 		if (_civil getvariable "civilrole" == "civil") then {
 			if(position _civil distance (_civil getvariable "destination") < 8) then {
-				_position = _positions call BIS_fnc_selectRandom;
+				_position = selectRandom _positions;
 				_civil setvariable ["destination", _position, false];
 				_civil stop false;
 				_civil domove _position;
@@ -87,7 +87,7 @@
 			_civil setvariable ["lastpos", position _civil, false];
 		
 			if(_civil getvariable "moveretry" > 3) then {
-				_position = _positions call BIS_fnc_selectRandom;
+				_position = selectRandom _positions;
 				_civil stop false;
 				_civil setvariable ["destination", _position, false];
 				_civil domove _position;

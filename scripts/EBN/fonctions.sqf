@@ -2,7 +2,7 @@
 [] execVM "scripts\EBN\marquer.sqf";
 
 BwS_EBN_fn_calculs_art = {
-
+	scriptName "BwS_EBN_fn_calculs_art";
 	player sideChat "Cliquez sur votre position sur la carte";
 	
 	onMapSingleClick 
@@ -17,10 +17,9 @@ BwS_EBN_fn_calculs_art = {
 				_positionBatterie = (_this select 0);
 				
 				player sideChat format ["Distance : %1m; Difference de niveau : %2m", (_positionBatterie distance2D _positionTarget), (getTerrainHeightASL _positionBatterie)-(getTerrainHeightASL _positionTarget)];
-				
+				onMapSingleClick ""
 			};
 		};
-		onMapSingleClick ""
 	};
 
 };

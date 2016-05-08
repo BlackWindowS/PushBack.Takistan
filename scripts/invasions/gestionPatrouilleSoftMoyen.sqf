@@ -1,3 +1,4 @@
+scriptName "BwS_fn_gestionPatrolSoftMoyen";
 _group = (_this select 0);
 
 _prochain_check = 0;

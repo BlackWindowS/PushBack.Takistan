@@ -1,3 +1,4 @@
+scriptName "BwS_fn_chasseur";
 ["Un chasseur a ete spawn"] spawn BwS_fn_diag_log;
 
 private ["_chasseur", "_cible", "_vehicles", "_type"];

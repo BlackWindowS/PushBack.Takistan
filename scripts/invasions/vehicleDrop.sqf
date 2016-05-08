@@ -1,4 +1,4 @@
-
+scriptName "BwS_fn_vehicleDrop";
 _veh = createVehicle ["O_Heli_Transport_04_F", [0, 0, 0], [], 1000, "FLY"];
 createVehicleCrew _veh;
 

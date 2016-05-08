@@ -1,3 +1,43 @@
+BwS_IED_fn_init =
+{
+	scriptName "BwS_IED_fn_init";
+
+	for "_i" from 0 to BwS_IED_cfg_nombre_d_IED do
+	{
+		_randomRoad = selectRandom ROADS;
+		_randomType = selectRandom BwS_IED_cfg_types;
+		
+		_IED = (_randomType select 0) createVehicle ([_randomRoad] call EPD_FIND_LOCATION_BY_ROAD);
+
+		if (_IED != objNull) then {			
+			_IED setVariable ["BwS_IED_est_un_IED", true, true];
+			_IED setVariable ["BwS_IED_force", (_randomType select 1), true];
+			if (random 1 < BwS_IED_cfg_probabilite_RC) then
+			{
+				_IED setVariable ["BwS_IED_RC", true, true];
+				_GRP_controleur = [(position _IED), 1, civilian, resistance] call BwS_fn_spawnGroup;
+				BwS_var_groupes_a_exclure pushBack _GRP_controleur; 
+				sleep 0.01;
+				_controleur = (units _GRP_controleur) select 0;
+				_controleur setPos [(position _controleur select 0)-10+random(20), (position _controleur select 1)-10+random(20)];
+				_controleur setBehaviour "STEALTH";
+				_controleur disableAI "MOVE";
+				_IED setVariable ["BwS_IED_controleur", _controleur, true];
+				_controleur addMagazine "rhs_30Rnd_545x39_AK";
+				_controleur addWeapon "rhs_weap_ak74m";
+				_controleur addMagazine "rhs_30Rnd_545x39_AK";
+				_controleur addMagazine "rhs_30Rnd_545x39_AK";
+			}
+			else
+			{
+				_IED setVariable ["BwS_IED_RC", false, true];
+				_IED setVariable ["BwS_IED_controleur", objNull, true];
+			};
+		};		
+		[format ["IED %1", (_ied getVariable "BwS_IED_RC")], position _IED] spawn BwS_fn_creerMarqueur;
+	};
+};
+
 EPD_CREATE_FRAGMENTS = { // fonction de [EPD] Brian du script random IED
 	_pos = _this select 0;
 	_numberOfFragments = _this select 1;
@@ -79,7 +119,6 @@ BwS_IED_fn_addAction =
 	_ied = (_this select 0);
 	
 	_desarmer = ("<t color=""#27EE1F"">") + ("Désarmer l'IED") + "</t>";
-	_conditionDesarmement = """ACE_DefusalKit"" in (items player) && ""MineDetector"" in (items player)";
 	
 	_ied addAction [
 		_desarmer,
@@ -90,7 +129,7 @@ BwS_IED_fn_addAction =
 			disableUserInput true;
 			sleep 4.545;			
 			
-			if ((joueurEOD && (random 100 < 98)) or (random 100 < 10)) then {_ied setVariable ["BwS_IED_est_un_IED", false, true];}
+			if ((joueurEOD && (random 100 > 98)) or (random 100 < 10)) then {_ied setVariable ["BwS_IED_est_un_IED", false, true];}
 			else {[_ied] spawn BwS_IED_fn_Explose_IED};
 			
 			[[[player], {(_this select 0) playmove "AinvPknlMstpSnonWrflDr_medic3";}], "BIS_fnc_call", nil, false, false] call BIS_fnc_MP;
@@ -104,6 +143,6 @@ BwS_IED_fn_addAction =
 		false,
 		true,
 		"",
-		"""ACE_DefusalKit"" in (items player) && ""MineDetector"" in (items player) && (_target distance _this) <= 3"
+		BwS_IED_cfg_condition_desarmement
 	];
 };	

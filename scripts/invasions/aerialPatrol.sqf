@@ -1,3 +1,4 @@
+scriptName "BwS_fn_aerialPatrol";
 ["Un vhicule aerien a ete spawn"] spawn BwS_fn_diag_log;
 
 private ["_randomPos", "_veh", "_types"];

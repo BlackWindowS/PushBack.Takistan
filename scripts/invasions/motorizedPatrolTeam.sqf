@@ -1,3 +1,4 @@
+scriptName "BwS_fn_motorizedPatrolTeam";
 // Création d'un pick up armé et de son équipage
 private ["_group", "_positionOnRoad", "_positionGroup"];
 

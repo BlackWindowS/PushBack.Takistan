@@ -1,3 +1,4 @@
+scriptName "BwS_fn_fixeTeam";
 // @param 1 : vehicule où sont créées les unités
 
 // Création d'un binôme : chacun un sac.

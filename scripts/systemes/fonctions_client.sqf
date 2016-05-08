@@ -7,6 +7,7 @@ BwS_fn_chargement =
 
 BwS_fn_creerMarqueur =
 {
+	scriptName "BwS_fn_creerMarqueur"; 
 	private ["_nomMarker", "_text", "_position", "_marker", "_couleur"];
 	
     //[input,index,(defaultValue,dataTypes,requiredCount)] call BIS_fnc_param; 
@@ -29,6 +30,7 @@ BwS_fn_creerMarqueur =
 };
 
 BwS_fn_RADAR_effacer_marqueurs = {
+	scriptName "BwS_fn_RADAR_effacer_marqueurs";
 	{ 
 		private ["_a"]; 
 		_a = toArray _x; 
@@ -42,6 +44,7 @@ BwS_fn_RADAR_effacer_marqueurs = {
 
 BwS_fn_afficher_marqueurs =
 {
+	scriptName "BwS_fn_afficher_marqueurs";
 	_marqueurs = ["PC"];
 	
 	{

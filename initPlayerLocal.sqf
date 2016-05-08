@@ -49,5 +49,5 @@ if (hasInterface) then
 	
 	nul = [] execVM "scripts\systemes\addActions.sqf";
 	
-	nul = [] spawn BwS_fn_afficher_marqueurs;
+	// nul = [] spawn BwS_fn_afficher_marqueurs;
 };

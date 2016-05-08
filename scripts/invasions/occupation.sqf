@@ -1,5 +1,6 @@
 // [thisTrigger] spawn BwS_fn_spawnOccupation
 BwS_fn_spawnOccupation = {
+	scriptName "BwS_fn_spawnOccupation";
 	private ["_maisons", "_nombreMaisons", "_trigger"];
 	
 	_trigger = (_this select 0);
@@ -11,7 +12,7 @@ BwS_fn_spawnOccupation = {
 	
 	// une patrouille pour 50 maisons
 	private ["_group"];
-	for "_i" from 0 to (_nombreMaisons/50) do 
+	for "_i" from 0 to ceil(_nombreMaisons/50) do 
 	{
 		_group = [(position _trigger), 3 + round(random(5)), resistance, resistance] call BwS_fn_spawnGroup;
 		BwS_var_groupes_a_exclure pushBack _group;
@@ -38,6 +39,7 @@ BwS_fn_spawnOccupation = {
 						_groupHomed setBehaviour "STEALTH";
 						_unit = (units _groupHomed) select 0;
 						BwS_var_homed pushBack _unit;
+						publicVariable "BwS_var_homed";
 						[_unit] spawn BwS_fn_gestion_radio;
 						_unit setpos [(position _unit select 0),
 									  (position _unit select 1),

@@ -1,3 +1,4 @@
+scriptName "BwS_fn_paradrop";
 ["Un paradrop a ete spawn"] spawn BwS_fn_diag_log;
 
 private ["_randomPos", "_eastHQ", "_group", "_veh", "_cible", "_destination", "_delay"];

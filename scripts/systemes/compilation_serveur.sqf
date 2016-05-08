@@ -14,6 +14,7 @@ BwS_fn_mortier = compile preprocessFile "scripts\invasions\mortarTeam.sqf";
 BwS_fn_airfield = compile preprocessFile "scripts\invasions\airfield.sqf";
 BwS_fn_chasseur = compile preprocessFile "scripts\invasions\chasseur.sqf";
 BwS_fn_paradrop = compile preprocessFile "scripts\invasions\paradrop.sqf";
+BwS_fn_embuscade = compile preprocessFile "scripts\invasions\embuscade.sqf";
 BwS_fn_occupation = compile preprocessFile "scripts\invasions\occupation.sqf";
 BwS_fn_patrolTeam = compile preprocessFile "scripts\invasions\patrolTeam.sqf";
 BwS_fn_gestionArty = compile preprocessFile "scripts\invasions\artillerie.sqf";
@@ -23,6 +24,7 @@ BwS_fn_gestionPatrol = compile preprocessFile "scripts\invasions\gestionPatrouil
 BwS_fn_gestionPatrolSoft = compile preprocessFile "scripts\invasions\gestionPatrouilleSoft.sqf";
 BwS_fn_motorizedPatrolTeam = compile preprocessFile "scripts\invasions\motorizedPatrolTeam.sqf";
 BwS_fn_gestionPatrolSoftMoyen = BwS_fn_gestionPatrol;
+
 
 BwS_fn_mission_camp = compile preprocessFile "scripts\missions\camp.sqf";
 BwS_fn_mission_convoi = compile preprocessFile "scripts\missions\convoi.sqf";

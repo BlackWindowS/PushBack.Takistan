@@ -1,3 +1,4 @@
+scriptName "BwS_fn_gestionPatrolSoft";
 _group = (_this select 0);
 
 while {count units _group != 0} do

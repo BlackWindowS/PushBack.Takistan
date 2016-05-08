@@ -1,3 +1,4 @@
+scriptName "BwS_fn_camp";
 private ["_position", "_positionBase", "_objects", "_qttPax"];
 
 _position = (_this select 1);

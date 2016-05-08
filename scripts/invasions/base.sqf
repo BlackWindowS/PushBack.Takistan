@@ -1,3 +1,4 @@
+scriptName "BwS_fn_base";
 // BwS_fn_gestionPatrolSoftMoyen
 
 _positionBase = markerPos "desert";

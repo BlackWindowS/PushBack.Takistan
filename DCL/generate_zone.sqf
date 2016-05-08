@@ -20,6 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // This script runs only on server side
 
+scriptName "DCL_generate_zone";
+
 if(!(isserver) and !(DCLusehclient)) exitwith {};
 if(!(!hasInterface && !isServer && name player == DCLhclientname) and DCLusehclient) exitwith {};
 
@@ -120,7 +122,7 @@ while { true } do
 		{
 			_civiltype = _x select 0;
 			_civil = _group createUnit [_civiltype, (_x select 1), [], 0, "FORM"];
-			_position = _positions call BIS_fnc_selectRandom;
+			_position = selectRandom _positions;
 			[_civil] execVM "cos\addScript_Unit.sqf"; // PUSHBACK
 			_civil setvariable ["civilrole", (_x select 2), true];
 			_civil setvariable ["destination", _position, false];

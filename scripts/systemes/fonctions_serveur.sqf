@@ -103,6 +103,7 @@ BwS_fn_nearestEnnemy =
 
 BwS_fn_creerMarqueur =
 {
+	scriptName "BwS_fn_creerMarqueur";
 	private ["_nomMarker", "_text", "_position", "_marker", "_couleur"];
 	
     //[input,index,(defaultValue,dataTypes,requiredCount)] call BIS_fnc_param; 
@@ -193,6 +194,7 @@ BwS_fn_spawn_camp =
 //[<location>] spawn BwS_fn_occuper_une_location;
 BwS_fn_occuper_une_location =
 {
+	scriptName "BwS_fn_occuper_une_location";
 	private ["_maisons", "_nombreMaisons", "_location", "_group", "_groupHomed"];
 	
 	_location = _this select 0;
@@ -253,6 +255,10 @@ BwS_fn_buildings_inAngleSector =
 BwS_fn_tri_des_unites =
 {
 	BwS_var_unites = [];
+	BwS_var_unites_de_caserne = BwS_var_unites_de_caserne - [grpNull];
+	BwS_var_unites_d_usine = BwS_var_unites_d_usine - [grpNull];
+	
+	{deleteGroup _x} forEach (allGroups select {(count units _x == 0)});
 	
 	{
 		if (side _x != west && (_x distance ([_x] call BwS_fn_nearestPlayer) <= 3000)) then
@@ -322,9 +328,46 @@ BwS_fn_sont_ils_en_convoi =
 	(({(((_x distance _nearestPlayer) < 200))} count _vehiculesJoueurs) > 2)
 };
 
+BwS_fn_route_entre_a_et_b = {
+	_r = (_this select 0);
+	_a = (_this select 1);
+	_b = (_this select 2);
+	
+	_xa = position _a select 0; 
+	_xb = position _b select 0;
+	_xr = position _r select 0;
+	_ya = position _a select 1;
+	_yb = position _b select 1;
+	_yr = position _r select 1;
+	
+	if (_xa > _xb) then
+	{
+		if (_ya > _yb) then
+		{
+			(_xr <= _xa) && (_xr >= _xb) && (_yr <= _ya) && (_yr >= _yb)
+		}
+		else // _ya < _yb
+		{
+			(_xr <= _xa) && (_xr >= _xb) && (_yr >= _ya) && (_yr <= _yb)
+		};
+	}
+	else // _xa < _xb
+	{
+		if (_ya > _yb) then
+		{
+			(_xr >= _xa) && (_xr <= _xb) && (_yr <= _ya) && (_yr >= _yb)
+		}
+		else // _ya < _yb
+		{
+			(_xr >= _xa) && (_xr <= _xb) && (_yr >= _ya) && (_yr <= _yb)
+		};
+	};
+};
 
-
-
+BwS_fn_sont_ils_en_groupe =
+{
+	(({(_x distance (_this select 0)) < 20} count allPlayers) > 3)
+};
 
 
 

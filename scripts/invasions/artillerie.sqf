@@ -1,3 +1,4 @@
+scriptName "BwS_fn_artillerie";
 #define HEURE 3600
 #define MINUTE 60
 

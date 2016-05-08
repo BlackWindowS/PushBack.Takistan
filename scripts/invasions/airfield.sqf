@@ -1,3 +1,4 @@
+scriptName "BwS_fn_airfield";
 private ["_position" ,"_radius"];
 
 _positionBase = _this select 0;
