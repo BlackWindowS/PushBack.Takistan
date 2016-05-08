@@ -32,6 +32,7 @@ if (getplayeruid player in _UIDs) then {player addAction ["MENU ADMIN", {showCom
 onMapSingleClick "_shift";
 
 [] spawn {
+	scriptName "check in FOB";
 	while {alive player} do {
 		if ((vehicle player == FOBa) ||
 			(vehicle player == FOBb)) then 
@@ -45,20 +46,20 @@ onMapSingleClick "_shift";
 			else
 			{
 				BwS_marqueur_brouillage setMarkerAlphaLocal 1;
-				BwS_marqueur_brouillage setMarkerPos (position vehicle player);
+				BwS_marqueur_brouillage setMarkerPosLocal (position vehicle player);
 			};
 		};
 		sleep 0.01;
 	};
 };
 
-[] spawn {
-	BwS_MUTEX_peut_rejoindre_champ_de_bataille = false;
-	// _futur = time + 120;
-	// waitUntil {hintSilent format ["%1:%2 avant TP possible", floor ((_futur-time)/60), floor ((_futur-time)%60)]; sleep 1; time >= _futur}; 
+// [] spawn {
+	// BwS_MUTEX_peut_rejoindre_champ_de_bataille = false;
+	// // _futur = time + 120;
+	// // waitUntil {hintSilent format ["%1:%2 avant TP possible", floor ((_futur-time)/60), floor ((_futur-time)%60)]; sleep 1; time >= _futur}; 
 	BwS_MUTEX_peut_rejoindre_champ_de_bataille = true;
-	hint "TP possible";
-};
+	// hint "TP possible";
+// };
 
 waituntil {preloadCamera position player};
 endLoadingScreen;
