@@ -43,7 +43,7 @@ if (BwS_Debug) then { ["caserne", _positionCaserne, "ColorBlue"] spawn BwS_fn_cr
 	// if ((damage _caserne < 1) && ([_caserne] call BwS_fn_faut_il_produire_des_pedestres)) then
 	// {
 		// creation de groupe(s) de combat
-		// _groupe = ([(_caserne buildingPos floor(random(count([_caserne] call BIS_fnc_buildingPositions)))), 3 + floor(random 6) , resistance, resistance] call BwS_fn_spawnGroup);
+		// _groupe = ([(_caserne buildingPos floor(random(count([_caserne] call BIS_fnc_buildingPositions)))), 3 + floor(random 6) , BwS_var_side_ennemie, BwS_var_side_ennemie] call BwS_fn_spawnGroup);
 		// {
 			// if (typeOf _x == "B_G_soldier_exp_F" || typeOf _x == "O_soldier_exp_F" || typeof _x == "rhs_g_Soldier_exp_F") then {[_x] execVM "scripts\poseMines.sqf";};
 		// } forEach units _groupe;

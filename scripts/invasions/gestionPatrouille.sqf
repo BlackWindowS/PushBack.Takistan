@@ -9,7 +9,7 @@ while {true} do
 	call BwS_fn_tri_des_unites;
 	{
 		_group = _x;
-		if (side _group == resistance) then
+		if (side _group == BwS_var_side_ennemie) then
 		{
 			_nearestPlayer = [leader _group] call BwS_fn_nearestPlayer;
 			_prochain_check = 0;

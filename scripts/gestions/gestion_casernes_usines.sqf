@@ -7,7 +7,7 @@ while {true} do
 		if ((damage _caserne < 1) && ([_caserne] call BwS_fn_faut_il_produire_des_pedestres) && time > (_caserne getVariable ["BwS_var_quand_produire", 0])) then
 		{
 			// creation de groupe(s) de combat
-			_groupe = ([(_caserne buildingPos floor(random(count([_caserne] call BIS_fnc_buildingPositions)))), 3 + floor(random 6) , resistance, resistance] call BwS_fn_spawnGroup);
+			_groupe = ([(_caserne buildingPos floor(random(count([_caserne] call BIS_fnc_buildingPositions)))), 3 + floor(random 6) , BwS_var_side_ennemie, BwS_var_side_ennemie] call BwS_fn_spawnGroup);
 			{
 				if (typeOf _x == "B_G_soldier_exp_F" || typeOf _x == "O_soldier_exp_F" || typeof _x == "rhs_g_Soldier_exp_F") then {[_x] execVM "scripts\poseMines.sqf";};
 			} forEach units _groupe;
@@ -52,12 +52,14 @@ while {true} do
 					["rhs_btr70_chdkz", 3],
 					["rhs_uaz_ags_chdkz", 3],
 					["rhs_ural_chdkz", 4]];
-			_vehicule = createVehicle [([_types] call BwS_fn_pick_random), (position _usine), [], 25, "NONE"];
+			
+			_safePos = [(position _usine), 1, 100, 3, 0, -1, 0] call BIS_fnc_findSafePos;
+			_vehicule = createVehicle [([_types] call BwS_fn_pick_random), _safePos, [], 25, "NONE"];
 
 			createVehicleCrew _vehicule;
 			_groupe = group driver _vehicule;
 		
-			_groupePassager = [[0,0,0], (_vehicule emptyPositions "cargo"), resistance, resistance] call BwS_fn_spawnGroup;
+			_groupePassager = [[0,0,0], (_vehicule emptyPositions "cargo"), BwS_var_side_ennemie, BwS_var_side_ennemie] call BwS_fn_spawnGroup;
 			{[_x] join _groupe; _x moveInCargo _vehicule;} forEach units _groupePassager;
 		
 			BwS_var_unites_d_usine pushBack _groupe;

@@ -14,7 +14,7 @@ BwS_fn_spawnOccupation = {
 	private ["_group"];
 	for "_i" from 0 to ceil(_nombreMaisons/50) do 
 	{
-		_group = [(position _trigger), 3 + round(random(5)), resistance, resistance] call BwS_fn_spawnGroup;
+		_group = [(position _trigger), 3 + round(random(5)), BwS_var_side_ennemie, BwS_var_side_ennemie] call BwS_fn_spawnGroup;
 		BwS_var_groupes_a_exclure pushBack _group;
 		[_group, (position leader _group), 200] call BIS_fnc_taskPatrol;
 	};	
@@ -33,7 +33,7 @@ BwS_fn_spawnOccupation = {
 				{
 					_pos = (selectRandom ([_x] call BIS_fnc_buildingPositions));
 					if ((_pos select 0) != 0) then {
-						_groupHomed = createGroup resistance;
+						_groupHomed = createGroup BwS_var_side_ennemie;
 						BwS_var_groupes_a_exclure pushBackUnique _groupHomed;
 						"rhs_g_Soldier_F" createUnit [_pos, _groupHomed]; 
 						_groupHomed setBehaviour "STEALTH";
@@ -72,7 +72,7 @@ _locations = nearestLocations [_centerMap, ["NameCityCapital", "NameCity", "Name
 	_trg = createTrigger ["EmptyDetector", _positionVille, false];
 	_trg setTriggerArea [500, 500, 0, false];
 	_trg setTriggerActivation ["WEST", "PRESENT", false];
-	_trg setTriggerStatements ["(({side _x == resistance} count allUnits) < 300) && {vehicle _x in thisList && isplayer _x} count allunits > 0", "[thisTrigger] spawn BwS_fn_spawnOccupation;", ""];
+	_trg setTriggerStatements ["(({side _x == BwS_var_side_ennemie} count allUnits) < 300) && {vehicle _x in thisList && isplayer _x} count allunits > 0", "[thisTrigger] spawn BwS_fn_spawnOccupation;", ""];
 	systemChat "trigger place sur une ville";
 	sleep 0.05;
 } forEach _villes;

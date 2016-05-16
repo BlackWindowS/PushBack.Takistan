@@ -6,7 +6,7 @@ if (BwS_Debug) then { ["brouilleur", _position, "ColorBlue"] spawn BwS_fn_creerM
 _brouilleur = "Land_JetEngineStarter_01_F" createVehicle _position;
 
 // création de sentinelles
-_group = [_position, 2, resistance, resistance] call BwS_fn_spawnGroup;
+_group = [_position, 2, BwS_var_side_ennemie, BwS_var_side_ennemie] call BwS_fn_spawnGroup;
 
 // rayon 3 kilomètres ou equivalent
 _distance_de_brouillage = 1500 + random 1500;

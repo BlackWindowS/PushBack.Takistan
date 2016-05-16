@@ -9,7 +9,7 @@ _unit = (_this select 0);
 
 {civilian revealMine _x} forEach allMines;
 
-if ((random 100) < 15) then {
+if ((_unit getVariable "civilrole") == "vilain") then {
 
 	[_unit] join grpNull;
 

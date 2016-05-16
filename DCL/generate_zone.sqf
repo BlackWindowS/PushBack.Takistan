@@ -95,7 +95,7 @@ for "_x" from 0 to _number do
 {
 	_civiltype = selectRandom civilclass;
 	_position = selectRandom _positions;
-	_civilrole = "civil";
+	_civilrole = [[["civil", 7], ["vilain", 3]]] call BwS_fn_pick_random;
 	_back pushBack [_civiltype, _position, _civilrole];
 };
 
@@ -123,7 +123,9 @@ while { true } do
 			_civiltype = _x select 0;
 			_civil = _group createUnit [_civiltype, (_x select 1), [], 0, "FORM"];
 			_position = selectRandom _positions;
+			
 			[_civil] execVM "cos\addScript_Unit.sqf"; // PUSHBACK
+			
 			_civil setvariable ["civilrole", (_x select 2), true];
 			_civil setvariable ["destination", _position, false];
 			_civil setvariable ["wcprotected", true, false];

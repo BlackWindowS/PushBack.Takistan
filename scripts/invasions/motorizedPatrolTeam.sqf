@@ -12,7 +12,7 @@ _veh = (selectRandom _tab) createVehicle _positionOnRoad;
 createVehicleCrew _veh;
 _group = group driver _veh;
 
-_groupePassager = [[0,0,0], (_veh emptyPositions "cargo"), resistance, resistance] call BwS_fn_spawnGroup;
+_groupePassager = [[0,0,0], (_veh emptyPositions "cargo"), BwS_var_side_ennemie, BwS_var_side_ennemie] call BwS_fn_spawnGroup;
 {[_x] join _group; _x moveInCargo _veh;} forEach units _groupePassager;
 
 BwS_var_unites_d_usine pushBack _group;

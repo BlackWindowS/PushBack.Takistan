@@ -46,3 +46,13 @@ class CfgUnitInsignia
 	};
 };
 
+class CfgMusic
+{
+	tracks[]={};
+
+	class FiveFingerIntro
+	{
+		name = "";
+		sound[] = {"5fdp.ogg", db+0, 1.0};
+	};
+};

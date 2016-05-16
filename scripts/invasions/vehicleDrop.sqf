@@ -24,7 +24,7 @@ _veh move [0, 0, 0];
 sleep 3;
 createVehicleCrew _ifrit;
 _ifrit setDamage 0;
-_group = [[0, 0, 0], 4, resistance, resistance] call BwS_fn_spawnGroup;
+_group = [[0, 0, 0], 4, BwS_var_side_ennemie, BwS_var_side_ennemie] call BwS_fn_spawnGroup;
 
 {_x moveInCargo _ifrit} forEach units _group;
 

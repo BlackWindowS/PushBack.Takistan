@@ -6,7 +6,9 @@ waitUntil {scriptDone BwS_compilation_client};
 if (hasInterface) then 
 {
 	fn_clr = {private ["_player"]; _player = _this select 0; _player unassignItem "NVGoggles"; removeAllWeapons _player; removeAllItems _player; removeVest _player; removeBackpack _player;};
-
+	
+	execVM "intro.sqf";
+	
 	// [player] call fn_clr;
 
 	nul = [] execVM "scripts\FOB.sqf";

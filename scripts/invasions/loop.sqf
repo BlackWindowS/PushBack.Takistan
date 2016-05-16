@@ -29,7 +29,7 @@ for "_i" from 0 to (3 + (random 2)) do
 
 BwS_fn_loop = {
 	scriptName "BwS_fn_loop";
-	waitUntil {sleep 1800; (({side _x == resistance} count allUnits) < 50) && (count allPlayers == 0)};
+	waitUntil {sleep 1800; (({side _x == BwS_var_side_ennemie} count allUnits) < 50) && (count allPlayers == 0)};
 	execVM "scripts\invasions\loop.sqf";
 };
 

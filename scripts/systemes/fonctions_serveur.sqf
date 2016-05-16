@@ -208,7 +208,7 @@ BwS_fn_occuper_une_location =
 	private ["_group"];
 	for "_i" from 0 to (_nombreMaisons/50) do 
 	{
-		_group = [(locationPosition _location), 3 + round(random(5)), resistance, resistance] call BwS_fn_spawnGroup;
+		_group = [(locationPosition _location), 3 + round(random(5)), BwS_var_side_ennemie, BwS_var_side_ennemie] call BwS_fn_spawnGroup;
 		[_group, (position leader _group), 200] call BIS_fnc_taskPatrol;
 	};	
 	
@@ -222,7 +222,7 @@ BwS_fn_occuper_une_location =
 		{
 			_pos = (_x buildingPos floor(random(count([_x] call BIS_fnc_buildingPositions))));
 			if ((_pos select 0) != 0 && (_pos select 1) != 0) then {
-				_groupHomed = createGroup resistance;
+				_groupHomed = createGroup BwS_var_side_ennemie;
 				"rhs_g_Soldier_F" createUnit [_pos, _groupHomed]; 
 				_groupHomed setBehaviour "STEALTH";
 				[(units _groupHomed) select 0] call BwS_fn_gestion_radio;
@@ -280,12 +280,12 @@ BwS_fn_faut_il_les_simuler =
 
 BwS_fn_faut_il_produire_des_pedestres =
 {
-	(({(_x distance (_this select 0)) <= 3000} count allPlayers > 0) && ({side _x == resistance} count allUnits) < 200 && ({(_x distance (_this select 0)) <= 20} count allPlayers == 0))
+	(({(_x distance (_this select 0)) <= 3000} count allPlayers > 0) && ({side _x == BwS_var_side_ennemie} count allUnits) < 200 && ({(_x distance (_this select 0)) <= 20} count allPlayers == 0))
 };
 
 BwS_fn_faut_il_produire_des_vehicules =
 {
-	(({(_x distance (_this select 0)) <= 3000} count allPlayers > 0) && ({side _x == resistance} count allUnits) < 200 && ({(_x distance (_this select 0)) <= 20} count allPlayers == 0))
+	(({(_x distance (_this select 0)) <= 3000} count allPlayers > 0) && ({side _x == BwS_var_side_ennemie} count allUnits) < 200 && ({(_x distance (_this select 0)) <= 20} count allPlayers == 0))
 };
 
 BwS_fn_nearestUsine = {

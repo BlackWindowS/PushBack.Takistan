@@ -56,7 +56,7 @@ if (BwS_Debug) then { ["usine", _positionusine, "ColorBlue"] spawn BwS_fn_creerM
 		// createVehicleCrew _vehicule;
 		// _groupe = group driver _vehicule;
 	
-		// _groupePassager = [[0,0,0], (_vehicule emptyPositions "cargo"), resistance, resistance] call BwS_fn_spawnGroup;
+		// _groupePassager = [[0,0,0], (_vehicule emptyPositions "cargo"), BwS_var_side_ennemie, BwS_var_side_ennemie] call BwS_fn_spawnGroup;
 		// {[_x] join _groupe; _x moveInCargo _vehicule;} forEach units _groupePassager;
 	
 		// BwS_var_unites_d_usine pushBack _groupe;

@@ -15,7 +15,7 @@ BwS_IED_fn_init =
 			if (random 1 < BwS_IED_cfg_probabilite_RC) then
 			{
 				_IED setVariable ["BwS_IED_RC", true, true];
-				_GRP_controleur = [(position _IED), 1, civilian, resistance] call BwS_fn_spawnGroup;
+				_GRP_controleur = [(position _IED), 1, civilian, BwS_var_side_ennemie] call BwS_fn_spawnGroup;
 				BwS_var_groupes_a_exclure pushBack _GRP_controleur; 
 				sleep 0.01;
 				_controleur = (units _GRP_controleur) select 0;
@@ -129,7 +129,7 @@ BwS_IED_fn_addAction =
 			disableUserInput true;
 			sleep 4.545;			
 			
-			if ((joueurEOD && (random 100 > 98)) or (random 100 < 10)) then {_ied setVariable ["BwS_IED_est_un_IED", false, true];}
+			if ((joueurEOD && (random 100 > 2)) or (random 100 < 10)) then {_ied setVariable ["BwS_IED_est_un_IED", false, true];}
 			else {[_ied] spawn BwS_IED_fn_Explose_IED};
 			
 			[[[player], {(_this select 0) playmove "AinvPknlMstpSnonWrflDr_medic3";}], "BIS_fnc_call", nil, false, false] call BIS_fnc_MP;

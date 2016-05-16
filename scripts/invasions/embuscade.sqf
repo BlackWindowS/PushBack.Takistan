@@ -1,5 +1,5 @@
 scriptName "BwS_fn_embuscade";
-_groups = allGroups select {((position leader _x) distance ([leader _x] call BwS_fn_nearestPlayer) < 3000) && (side _x == resistance) && !(_x in BwS_var_groupes_a_exclure) && (_x in (BwS_var_unites_de_caserne+BwS_var_unites_d_usine))};
+_groups = allGroups select {((position leader _x) distance ([leader _x] call BwS_fn_nearestPlayer) < 3000) && (side _x == BwS_var_side_ennemie) && !(_x in BwS_var_groupes_a_exclure) && (_x in (BwS_var_unites_de_caserne+BwS_var_unites_d_usine))};
 
 if (count _groups > 0) then
 {

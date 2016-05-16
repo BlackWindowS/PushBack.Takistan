@@ -31,7 +31,7 @@ if (count _campsSelectionnes == 0) then {_campsSelectionnes = [_positionCamp sel
 		
 		if (BwS_Debug) then {["Camion", position _veh, "ColorPink"] spawn BwS_fn_creerMarqueur};
 
-		_group = [_positionSafe, 12, resistance, resistance] call BwS_fn_spawnGroup;
+		_group = [_positionSafe, 12, BwS_var_side_ennemie, BwS_var_side_ennemie] call BwS_fn_spawnGroup;
 		
 		{_x moveInCargo _veh; _x assignascargo _veh} forEach units _group;
 		

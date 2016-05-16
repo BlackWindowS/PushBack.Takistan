@@ -11,7 +11,7 @@ _types = ["rhs_btr70_chdkz", "rhs_btr60_chdkz"];
 _char = createVehicle [(selectRandom _types), _randomPos, [], 0, "NONE"];
 createVehicleCrew _char;
 
-_group = [_randomPos, 8, resistance, resistance] call BwS_fn_spawnGroup;
+_group = [_randomPos, 8, BwS_var_side_ennemie, BwS_var_side_ennemie] call BwS_fn_spawnGroup;
 
 units _group join (group driver _char); 
 sleep 0.01;

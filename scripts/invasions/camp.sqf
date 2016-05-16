@@ -118,7 +118,7 @@ if (BwS_Debug) then { ["camp", _position, "ColorYellow"] spawn BwS_fn_creerMarqu
 
 private ["_eastHQ", "_group", "_soldats"];
 
-_group = [_position, _qttPax, resistance, resistance] call BwS_fn_spawnGroup;
+_group = [_position, _qttPax, BwS_var_side_ennemie, BwS_var_side_ennemie] call BwS_fn_spawnGroup;
 sleep 1;
 [_group, _position, 50] call BIS_fnc_taskPatrol;
 BwS_var_groupes_a_exclure pushBackUnique _group;

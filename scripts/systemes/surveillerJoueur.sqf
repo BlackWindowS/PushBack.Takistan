@@ -10,7 +10,7 @@ JOUEUR_EST_DANS_PC = {((player distance (nearestObject [player, "Land_Cargo_Towe
 
 #define CONDITION_PILOTE ((vehicle player) isKindOf "Air" && !(joueurPilote) && (driver vehicle player == player) && !(typeOf vehicle player isEqualTo "Steerable_Parachute_F"))
 
-startLoadingScreen ["Chargement en cours"];
+#define CONDITION_BULLE (!((vehicle player) isKindOf "Air") && ((player distance FOBb) > 2500 && (player distance FOBa) > 2500 && (player distance markerPos "PC") > 2500 && (player distance COP_USA_1) > 2500 && (player distance COP_USA_2 > 2500)))
 
 waitUntil {scriptDone BwS_compilation_client};
 
@@ -62,7 +62,6 @@ onMapSingleClick "_shift";
 // };
 
 waituntil {preloadCamera position player};
-endLoadingScreen;
 
 player disableTIEquipment true;
 
@@ -113,6 +112,16 @@ while {alive player} do
 	
 	if (CONDITION_PILOTE) then {moveOut player; hintC "Vous devez être pilote !"; }; // on jarte du véhicule s'il n'est pas pilote
 		
+	if (CONDITION_BULLE) then // s'il s'éloigne trop du FOB
+	{
+		// _nearestFOB = [FOBa, FOBb, COP_USA_1, COP_USA_2, markerPos "PC"] select {_x distance player >= 2500 && _x distance player <= 2550} select 0;
+		// _dir = ([_nearestFOB, player] call BIS_fnc_dirTo); 
+		// _dir = _dir mod 90; 
+		// _dir = 90 - _dir;
+		// player setPos [(position _nearestFOB)+cos(_dir)*2500, sin(_dir)*3500];
+		
+	};
+	
 	showChat true;
 		
 	// ouverture automatique de barrière
